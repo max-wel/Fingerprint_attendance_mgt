@@ -41,5 +41,10 @@ namespace Fingerprint_attendance_mgt
         {
 
         }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
