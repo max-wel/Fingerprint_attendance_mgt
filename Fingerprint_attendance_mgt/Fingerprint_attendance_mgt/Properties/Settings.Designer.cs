@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsFormsApplication1.Properties
+namespace Fingerprint_attendance_mgt.Properties
 {
 
 
