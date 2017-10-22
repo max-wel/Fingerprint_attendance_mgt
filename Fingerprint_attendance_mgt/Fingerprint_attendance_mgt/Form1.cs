@@ -41,5 +41,10 @@ namespace Fingerprint_attendance_mgt
         {
 
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
