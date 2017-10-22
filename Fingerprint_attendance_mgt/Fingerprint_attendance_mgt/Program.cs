@@ -16,7 +16,7 @@ namespace Fingerprint_attendance_mgt
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new attendance_form());
+            Application.Run(new Enroll());
         }
     }
 }
