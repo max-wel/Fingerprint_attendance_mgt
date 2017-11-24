@@ -83,6 +83,7 @@
             this.staffEnrollmentToolStripMenuItem.Name = "staffEnrollmentToolStripMenuItem";
             this.staffEnrollmentToolStripMenuItem.Size = new System.Drawing.Size(104, 20);
             this.staffEnrollmentToolStripMenuItem.Text = "Staff Enrollment";
+            this.staffEnrollmentToolStripMenuItem.Click += new System.EventHandler(this.staffEnrollmentToolStripMenuItem_Click);
             // 
             // attendanceToolStripMenuItem
             // 
@@ -102,13 +103,13 @@
             // dailyToolStripMenuItem
             // 
             this.dailyToolStripMenuItem.Name = "dailyToolStripMenuItem";
-            this.dailyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dailyToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.dailyToolStripMenuItem.Text = "Daily";
             // 
             // monthlyToolStripMenuItem
             // 
             this.monthlyToolStripMenuItem.Name = "monthlyToolStripMenuItem";
-            this.monthlyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.monthlyToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.monthlyToolStripMenuItem.Text = "Monthly";
             // 
             // groupBox1
@@ -134,7 +135,7 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Staff Details";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+//            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // textBox7
             // 
@@ -183,7 +184,7 @@
             this.label5.Size = new System.Drawing.Size(59, 16);
             this.label5.TabIndex = 8;
             this.label5.Text = "Gender :";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+//            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // textBox4
             // 
@@ -221,7 +222,7 @@
             this.label4.Size = new System.Drawing.Size(62, 16);
             this.label4.TabIndex = 3;
             this.label4.Text = "Position :";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+//            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -249,7 +250,7 @@
             this.label1.Size = new System.Drawing.Size(51, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name :";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+//            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // statusStrip1
             // 
