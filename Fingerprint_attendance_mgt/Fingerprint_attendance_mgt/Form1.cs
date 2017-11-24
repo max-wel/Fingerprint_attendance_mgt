@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Fingerprint_attendance_mgt
 {
+    delegate void Function();
     public partial class attendance_form : Form
     {
         public attendance_form()

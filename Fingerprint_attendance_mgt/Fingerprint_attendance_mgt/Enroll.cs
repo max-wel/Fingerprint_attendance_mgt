@@ -12,14 +12,20 @@ using System.Windows.Forms;
 
 namespace Fingerprint_attendance_mgt
 {
-    public partial class Enroll : Form
+    public partial class Enroll : Form, DPFP.Capture.EventHandler
     {
         private String name, id_num, department, gender, position, email, phone;
+        private Image img;
+        private DPFP.Capture.Capture Capturer;
 
-        private string path = Path.GetFullPath(Environment.CurrentDirectory);
-        private string dbName = "Attendance_mgt.mdf";
+        public delegate void OnTemplateEventHandler(DPFP.Template template);
 
-        #region
+        public event OnTemplateEventHandler OnTemplate;
+
+        //private string path = Path.GetFullPath(Environment.CurrentDirectory);
+        //private string dbName = "Attendance_mgt.mdf";
+
+        #region member variables
         public string Name1
         {
             get
@@ -110,27 +116,188 @@ namespace Fingerprint_attendance_mgt
                 phone = value;
             }
         }
-#endregion
+#endregion member variables
         public Enroll()
         {
             InitializeComponent();
             //string path = Path.GetFullPath(Environment.CurrentDirectory);
-            
-
         }
 
-        public void staffDetails()
+
+        protected virtual void Init()
         {
-            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + ";Integrated Security=True;Connect Timeout=30"))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Staff_Enroll() VALUES ()", conn);
-            }
+            Capturer = new DPFP.Capture.Capture();                  // Create a capture operation.
+            Capturer.EventHandler = this;                           // Subscribe for capturing events.
+            Enroller = new DPFP.Processing.Enrollment();            // Create an enrollment.
+            UpdateStatus();
+        }
+
+        protected virtual void Process(DPFP.Sample Sample)
+        {
+            // Draw fingerprint sample image.
+            DrawPicture(ConvertSampleToBitmap(Sample));
+            // Process the sample and create a feature set for the enrollment purpose.
+            DPFP.FeatureSet features = ExtractFeatures(Sample, DPFP.Processing.DataPurpose.Enrollment);
+
+            // Check quality of the sample and add to enroller if it's good
+            if (features != null)
+                try
+                {
+                    MakeReport("The fingerprint feature set was created.");
+                    Enroller.AddFeatures(features);     // Add feature set to template.
+                }
+                finally
+                {
+                    UpdateStatus();
+
+                    // Check if template has been created.
+                    switch (Enroller.TemplateStatus)
+                    {
+                        case DPFP.Processing.Enrollment.Status.Ready:   // report success and stop capturing
+                            OnTemplate(Enroller.Template);
+                            SetPrompt("Click Close, and then click Fingerprint Verification.");
+                            Stop();
+                            break;
+
+                        case DPFP.Processing.Enrollment.Status.Failed:  // report failure and restart capturing
+                            Enroller.Clear();
+                            Stop();
+                            UpdateStatus();
+                            OnTemplate(null);
+                            Start();
+                            break;
+                    }
+                }
+        }
+
+        protected void Start()
+        {
+            Capturer.StartCapture();
+            SetPrompt("Using the fingerprint reader, scan your fingerprint.");
+        }
+
+        protected void Stop()
+        {
+            Capturer.StopCapture();
+        }
+
+        #region Form EventHandler
+        private void Enroll_Load(object sender, EventArgs e)
+        {
+            Init();
+            Start();
+        }
+
+        private void Enroll_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Stop();
+        }
+        #endregion
+
+        #region EventHandler Members:
+
+        public void OnComplete(object Capture, string ReaderSerialNumber, DPFP.Sample Sample)
+        {
+            MakeReport("The fingerprint sample was captured.");
+            SetPrompt("Scan the same fingerprint again.");
+            Process(Sample);
+        }
+
+        public void OnFingerGone(object Capture, string ReaderSerialNumber)
+        {
+            MakeReport("The finger was removed from the fingerprint reader.");
+        }
+
+        public void OnFingerTouch(object Capture, string ReaderSerialNumber)
+        {
+            MakeReport("The fingerprint reader was touched.");
+        }
+
+        public void OnReaderConnect(object Capture, string ReaderSerialNumber)
+        {
+            MakeReport("The fingerprint reader was connected.");
+        }
+
+        public void OnReaderDisconnect(object Capture, string ReaderSerialNumber)
+        {
+            MakeReport("The fingerprint reader was disconnected.");
+        }
+
+        public void OnSampleQuality(object Capture, string ReaderSerialNumber, DPFP.Capture.CaptureFeedback CaptureFeedback)
+        {
+            if (CaptureFeedback == DPFP.Capture.CaptureFeedback.Good)
+                MakeReport("The quality of the fingerprint sample is good.");
+            else
+                MakeReport("The quality of the fingerprint sample is poor.");
+        }
+        #endregion
+
+        protected Bitmap ConvertSampleToBitmap(DPFP.Sample Sample)
+        {
+            DPFP.Capture.SampleConversion Convertor = new DPFP.Capture.SampleConversion();  // Create a sample convertor.
+            Bitmap bitmap = null;                                                           // TODO: the size doesn't matter
+            Convertor.ConvertToPicture(Sample, ref bitmap);                                 // TODO: return bitmap as a result
+            return bitmap;
+        }
+
+        protected DPFP.FeatureSet ExtractFeatures(DPFP.Sample Sample, DPFP.Processing.DataPurpose Purpose)
+        {
+            DPFP.Processing.FeatureExtraction Extractor = new DPFP.Processing.FeatureExtraction();  // Create a feature extractor
+            DPFP.Capture.CaptureFeedback feedback = DPFP.Capture.CaptureFeedback.None;
+            DPFP.FeatureSet features = new DPFP.FeatureSet();
+            Extractor.CreateFeatureSet(Sample, Purpose, ref feedback, ref features);            // TODO: return features as a result?
+            if (feedback == DPFP.Capture.CaptureFeedback.Good)
+                return features;
+            else
+                return null;
+        }
+
+
+        protected void SetStatus(string status)
+        {
+            this.Invoke(new Function(delegate () {
+                StatusLine.Text = status;
+            }));
+        }
+
+        protected void SetPrompt(string prompt)
+        {
+            this.Invoke(new Function(delegate () {
+                Prompt.Text = prompt;
+            }));
+        }
+
+        
+
+        protected void MakeReport(string message)
+        {
+            this.Invoke(new Function(delegate () {
+                StatusText.AppendText(message + "\r\n");
+            }));
+        }
+
+        private void DrawPicture(Bitmap bitmap)
+        {
+            this.Invoke(new Function(delegate () {
+                Picture.Image = new Bitmap(bitmap, Picture.Size);   // fit the image into the picture box
+            }));
         }
 
        
-        
-     
+
+
+        //public void staffDetails()
+        //{
+        //    using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + ";Integrated Security=True;Connect Timeout=30"))
+        //    {
+        //        conn.Open();
+        //        SqlCommand cmd = new SqlCommand("INSERT INTO Staff_Enroll() VALUES ()", conn);
+        //    }
+        //}
+
+
+
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
@@ -139,6 +306,14 @@ namespace Fingerprint_attendance_mgt
             {
                 pictureBox1.Load(open.FileName);
             }
+            img = pictureBox1.Image;
+            byte[] img_arr;
+            using(var ms = new MemoryStream())
+            {
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                img_arr = ms.ToArray();
+            }
+
         }
         private void update_button_Click(object sender, EventArgs e)
         {
@@ -179,5 +354,13 @@ namespace Fingerprint_attendance_mgt
             Phone = Phone_text.Text;
             Email = Email_text.Text;
         }
+
+        private void UpdateStatus()
+        {
+            // Show number of samples needed.
+            SetStatus(String.Format("Fingerprint samples needed: {0}", Enroller.FeaturesNeeded));
+        }
+
+        private DPFP.Processing.Enrollment Enroller;
     }
 }

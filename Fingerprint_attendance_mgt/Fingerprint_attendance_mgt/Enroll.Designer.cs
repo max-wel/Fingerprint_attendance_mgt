@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Enroll));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Picture = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -50,12 +50,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.Prompt = new System.Windows.Forms.TextBox();
+            this.StatusText = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.StatusLine = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +64,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Controls.Add(this.Picture);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.groupBox1);
@@ -72,15 +73,15 @@
             this.panel1.Size = new System.Drawing.Size(837, 582);
             this.panel1.TabIndex = 0;
             // 
-            // pictureBox2
+            // Picture
             // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox2.Location = new System.Drawing.Point(503, 275);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(211, 268);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
+            this.Picture.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Picture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Picture.Location = new System.Drawing.Point(503, 275);
+            this.Picture.Name = "Picture";
+            this.Picture.Size = new System.Drawing.Size(211, 268);
+            this.Picture.TabIndex = 1;
+            this.Picture.TabStop = false;
             // 
             // label8
             // 
@@ -288,21 +289,21 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // textBox1
+            // Prompt
             // 
-            this.textBox1.Location = new System.Drawing.Point(899, 95);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(255, 20);
-            this.textBox1.TabIndex = 1;
+            this.Prompt.Location = new System.Drawing.Point(899, 95);
+            this.Prompt.Name = "Prompt";
+            this.Prompt.Size = new System.Drawing.Size(255, 20);
+            this.Prompt.TabIndex = 1;
             // 
-            // textBox2
+            // StatusText
             // 
-            this.textBox2.Location = new System.Drawing.Point(899, 188);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox2.Size = new System.Drawing.Size(298, 251);
-            this.textBox2.TabIndex = 2;
+            this.StatusText.Location = new System.Drawing.Point(899, 188);
+            this.StatusText.Multiline = true;
+            this.StatusText.Name = "StatusText";
+            this.StatusText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.StatusText.Size = new System.Drawing.Size(298, 251);
+            this.StatusText.TabIndex = 2;
             // 
             // label10
             // 
@@ -324,21 +325,33 @@
             this.label9.TabIndex = 5;
             this.label9.Text = "Status :";
             // 
+            // StatusLine
+            // 
+            this.StatusLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusLine.Location = new System.Drawing.Point(896, 481);
+            this.StatusLine.Name = "StatusLine";
+            this.StatusLine.Size = new System.Drawing.Size(266, 51);
+            this.StatusLine.TabIndex = 6;
+            this.StatusLine.Text = "[Status Line]";
+            // 
             // Enroll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1231, 638);
+            this.Controls.Add(this.StatusLine);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.StatusText);
+            this.Controls.Add(this.Prompt);
             this.Controls.Add(this.panel1);
             this.Name = "Enroll";
             this.Text = "Enroll";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Enroll_FormClosed);
+            this.Load += new System.EventHandler(this.Enroll_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -369,10 +382,11 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button update_button;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.PictureBox Picture;
+        private System.Windows.Forms.TextBox Prompt;
+        private System.Windows.Forms.TextBox StatusText;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label StatusLine;
     }
 }
