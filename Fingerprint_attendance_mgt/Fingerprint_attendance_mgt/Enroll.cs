@@ -14,13 +14,13 @@ namespace Fingerprint_attendance_mgt
 {
     public partial class Enroll : Form, DPFP.Capture.EventHandler
     {
-        private String name, id_num, department, gender, position, email, phone;
-        private Image img;
-        private DPFP.Capture.Capture Capturer;
+        private String name, id_num, department, gender, position, email, phone, fp_string;
+        private byte[] img_arr;
+        public DPFP.Capture.Capture Capturer;
 
         public delegate void OnTemplateEventHandler(DPFP.Template template);
 
-        public event OnTemplateEventHandler OnTemplate;
+        public event OnTemplateEventHandler On_Template;
 
         //private string path = Path.GetFullPath(Environment.CurrentDirectory);
         //private string dbName = "Attendance_mgt.mdf";
@@ -120,7 +120,21 @@ namespace Fingerprint_attendance_mgt
         public Enroll()
         {
             InitializeComponent();
+            On_Template += this.OnTemplate;
             //string path = Path.GetFullPath(Environment.CurrentDirectory);
+        }
+
+        private void OnTemplate(DPFP.Template template)
+        {
+            this.Invoke(new Function(delegate ()
+            {
+                Template = template;
+                //VerifyButton.Enabled = SaveButton.Enabled = (Template != null);
+                if (Template != null)
+                    MessageBox.Show("The fingerprint template is ready for fingerprint verification.", "Fingerprint Enrollment");
+                else
+                    MessageBox.Show("The fingerprint template is not valid. Repeat fingerprint enrollment.", "Fingerprint Enrollment");
+            }));
         }
 
 
@@ -276,7 +290,7 @@ namespace Fingerprint_attendance_mgt
             }));
         }
 
-        private void DrawPicture(Bitmap bitmap)
+        public void DrawPicture(Bitmap bitmap)
         {
             this.Invoke(new Function(delegate () {
                 Picture.Image = new Bitmap(bitmap, Picture.Size);   // fit the image into the picture box
@@ -306,8 +320,9 @@ namespace Fingerprint_attendance_mgt
             {
                 pictureBox1.Load(open.FileName);
             }
-            img = pictureBox1.Image;
-            byte[] img_arr;
+       
+            Image img = pictureBox1.Image;
+            //byte[] img_arr;
             using(var ms = new MemoryStream())
             {
                 img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -353,6 +368,25 @@ namespace Fingerprint_attendance_mgt
             Position = Position_comboBox.Text;
             Phone = Phone_text.Text;
             Email = Email_text.Text;
+
+            byte[] bytes = new byte[1632];
+            Template.Serialize(ref bytes);
+            fp_string = Convert.ToBase64String(bytes);
+
+            dbUpdate();
+
+        }
+
+        private void dbUpdate()
+        {
+            Database db = new Database();
+            db.dbEnroll(Id_num, Name1, Department, Gender, Position, Phone, Email, img_arr, fp_string);
+        }
+
+        public void sqlexception_handle()
+        {
+            MessageBox.Show("User already exists");
+            return;
         }
 
         private void UpdateStatus()
@@ -362,5 +396,6 @@ namespace Fingerprint_attendance_mgt
         }
 
         private DPFP.Processing.Enrollment Enroller;
+        private DPFP.Template Template;
     }
 }

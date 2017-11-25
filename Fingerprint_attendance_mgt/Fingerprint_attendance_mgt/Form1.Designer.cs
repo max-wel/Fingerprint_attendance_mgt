@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(attendance_form));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.staffEnrollmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,18 +53,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.date = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.time = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Prompt = new System.Windows.Forms.TextBox();
+            this.StatusText = new System.Windows.Forms.TextBox();
+            this.Picture = new System.Windows.Forms.PictureBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -74,7 +80,7 @@
             this.logToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(778, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1139, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -135,7 +141,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Staff Details";
-//            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // textBox7
             // 
@@ -184,7 +189,6 @@
             this.label5.Size = new System.Drawing.Size(59, 16);
             this.label5.TabIndex = 8;
             this.label5.Text = "Gender :";
-//            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // textBox4
             // 
@@ -222,7 +226,6 @@
             this.label4.Size = new System.Drawing.Size(62, 16);
             this.label4.TabIndex = 3;
             this.label4.Text = "Position :";
-//            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -250,20 +253,19 @@
             this.label1.Size = new System.Drawing.Size(51, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name :";
-//            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2,
+            this.date,
             this.toolStripStatusLabel3,
-            this.toolStripStatusLabel4,
+            this.time,
             this.toolStripStatusLabel5,
             this.toolStripStatusLabel6});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 384);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 432);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(778, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1139, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -273,11 +275,11 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(44, 17);
             this.toolStripStatusLabel1.Text = "DATE : ";
             // 
-            // toolStripStatusLabel2
+            // date
             // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(117, 17);
-            this.toolStripStatusLabel2.Text = "XXX - XX - XX - XXXX";
+            this.date.Name = "date";
+            this.date.Size = new System.Drawing.Size(117, 17);
+            this.date.Text = "XXX - XX - XX - XXXX";
             // 
             // toolStripStatusLabel3
             // 
@@ -285,11 +287,11 @@
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(61, 17);
             this.toolStripStatusLabel3.Text = "       TIME :";
             // 
-            // toolStripStatusLabel4
+            // time
             // 
-            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(96, 17);
-            this.toolStripStatusLabel4.Text = "XX : XX : XX - PM";
+            this.time.Name = "time";
+            this.time.Size = new System.Drawing.Size(96, 17);
+            this.time.Text = "XX : XX : XX - PM";
             // 
             // toolStripStatusLabel5
             // 
@@ -314,22 +316,67 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
+            // Prompt
             // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(594, 49);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(172, 198);
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
+            this.Prompt.Location = new System.Drawing.Point(879, 70);
+            this.Prompt.Name = "Prompt";
+            this.Prompt.Size = new System.Drawing.Size(216, 20);
+            this.Prompt.TabIndex = 6;
+            // 
+            // StatusText
+            // 
+            this.StatusText.Location = new System.Drawing.Point(879, 153);
+            this.StatusText.Multiline = true;
+            this.StatusText.Name = "StatusText";
+            this.StatusText.Size = new System.Drawing.Size(216, 200);
+            this.StatusText.TabIndex = 7;
+            // 
+            // Picture
+            // 
+            this.Picture.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Picture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Picture.Location = new System.Drawing.Point(597, 48);
+            this.Picture.Name = "Picture";
+            this.Picture.Size = new System.Drawing.Size(201, 219);
+            this.Picture.TabIndex = 8;
+            this.Picture.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(876, 45);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(50, 15);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Prompt:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(876, 123);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 15);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Status:";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // attendance_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(778, 406);
-            this.Controls.Add(this.pictureBox2);
+            this.ClientSize = new System.Drawing.Size(1139, 454);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.Picture);
+            this.Controls.Add(this.StatusText);
+            this.Controls.Add(this.Prompt);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
@@ -337,6 +384,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "attendance_form";
             this.Text = "Staff Attendance";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.attendance_form_FormClosed);
+            this.Load += new System.EventHandler(this.attendance_form_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -344,7 +393,7 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,13 +424,18 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel date;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
+        private System.Windows.Forms.ToolStripStatusLabel time;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
+        private System.Windows.Forms.TextBox Prompt;
+        private System.Windows.Forms.TextBox StatusText;
+        private System.Windows.Forms.PictureBox Picture;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
