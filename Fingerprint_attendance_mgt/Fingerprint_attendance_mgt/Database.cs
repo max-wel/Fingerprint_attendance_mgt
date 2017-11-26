@@ -12,8 +12,78 @@ namespace Fingerprint_attendance_mgt
 {
     class Database
     {
+        private string id, name, dept, gender, position;
+        private byte[] photo;
         private string path, dbName;
         private SqlConnection conn;
+
+        #region member variables
+        public string Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+            }
+        }
+
+        public string Dept
+        {
+            get
+            {
+                return dept;
+            }
+
+            set
+            {
+                dept = value;
+            }
+        }
+
+        public string Gender
+        {
+            get
+            {
+                return gender;
+            }
+
+            set
+            {
+                gender = value;
+            }
+        }
+
+        public string Position
+        {
+            get
+            {
+                return position;
+            }
+
+            set
+            {
+                position = value;
+            }
+        }
+        #endregion
+
         public Database()
         {
             path = Path.GetFullPath(Environment.CurrentDirectory);
@@ -70,6 +140,26 @@ namespace Fingerprint_attendance_mgt
 
                 return list;
             
+            }
+        }
+
+        public void getStaff_Details(string f_print)
+        {
+            using (conn)
+            {
+                var cmd = new SqlCommand("SELECT * FROM [Staff_Enroll] WHERE Fingerprint = @Fingerprint",conn);
+                cmd.Parameters.Add("Fingerprint", SqlDbType.VarChar).Value = f_print;
+                conn.Open();
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Name = (string)reader["Full Name"];
+                    Id = (string)reader["Id"];
+                    Dept = (string)reader["Department"];
+                    Gender = (string)reader["Gender"];
+                    Position = (string)reader["Position"];
+                }
             }
         }
     }

@@ -384,6 +384,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "attendance_form";
             this.Text = "Staff Attendance";
+            this.Activated += new System.EventHandler(this.attendance_form_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.attendance_form_FormClosed);
             this.Load += new System.EventHandler(this.attendance_form_Load);
             this.menuStrip1.ResumeLayout(false);

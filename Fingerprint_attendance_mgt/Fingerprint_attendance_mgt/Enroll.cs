@@ -205,6 +205,7 @@ namespace Fingerprint_attendance_mgt
         private void Enroll_FormClosed(object sender, FormClosedEventArgs e)
         {
             Stop();
+           
         }
         #endregion
 

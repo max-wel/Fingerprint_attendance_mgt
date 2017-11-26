@@ -22,6 +22,7 @@ namespace Fingerprint_attendance_mgt
         {
             InitializeComponent();
             
+            
         }
 
 
@@ -102,6 +103,7 @@ namespace Fingerprint_attendance_mgt
 
         protected  void Process(DPFP.Sample Sample)
         {
+            bool verified = false;
             // Draw fingerprint sample image.
             DrawPicture(ConvertSampleToBitmap(Sample));
 
@@ -123,18 +125,26 @@ namespace Fingerprint_attendance_mgt
                     Verificator.Verify(features, Template, ref result);
                     //UpdateStatus(result.FARAchieved);
                     if (result.Verified)
+                    {
+                        verified = true;
                         MakeReport("The fingerprint was VERIFIED.");
-                    else
-                        MakeReport("The fingerprint wan NOT VERIFIED.");
+
+                    }
+                        
+                    //else
+                    //    MakeReport("The fingerprint wan NOT VERIFIED.");
                 }
                 // Compare the feature set with our template
+                if (!verified)
+                {
+                    MessageBox.Show("Invalid staff");
+                }
                 
             }
         }
 
         public void get_fprint()
         {
-           
             Database db = new Database();
             list = new List<string>();
             list = db.db_retrieve();
@@ -196,6 +206,11 @@ namespace Fingerprint_attendance_mgt
         private void attendance_form_FormClosed(object sender, FormClosedEventArgs e)
         {
             Stop();
+        }
+
+        private void attendance_form_Activated(object sender, EventArgs e)
+        {
+            Start();
         }
     }
 }
