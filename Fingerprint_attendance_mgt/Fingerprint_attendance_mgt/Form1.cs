@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +13,87 @@ using System.Windows.Forms;
 namespace Fingerprint_attendance_mgt
 {
     delegate void Function();
+    delegate void setText(string text);
+    delegate void setPhoto(byte[] photo);
     public partial class attendance_form : Form, DPFP.Capture.EventHandler
     {
+        private string staff_finger; //variable to hold staff fingerprint from list for identification
+        private string id,staff_Date, timeIn, timeOut;  //variables for storing staff date, timein and timeout
+        private string path = Path.GetFullPath(Environment.CurrentDirectory);
+        private string dbName = "Attendance_mgt.mdf";
+        //SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + ";Integrated Security=True;Connect Timeout=30");
+
         private List<string> list;
         private byte[] f_print;
         public DPFP.Capture.Capture Capturer;
         private DPFP.Template Template;
         private DPFP.Verification.Verification Verificator;
+
+        public string Staff_finger
+        {
+            get
+            {
+                return staff_finger;
+            }
+
+            set
+            {
+                staff_finger = value;
+            }
+        }
+
+        public string Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public string Staff_Date
+        {
+            get
+            {
+                return staff_Date;
+            }
+
+            set
+            {
+                staff_Date = value;
+            }
+        }
+
+        public string TimeIn
+        {
+            get
+            {
+                return timeIn;
+            }
+
+            set
+            {
+                timeIn = value;
+            }
+        }
+
+        public string TimeOut
+        {
+            get
+            {
+                return timeOut;
+            }
+
+            set
+            {
+                timeOut = value;
+            }
+        }
+
         public attendance_form()
         {
             InitializeComponent();
@@ -71,12 +147,7 @@ namespace Fingerprint_attendance_mgt
         }
         #endregion
 
-        //protected void SetStatus(string status)
-        //{
-        //    this.Invoke(new Function(delegate () {
-        //        StatusLine.Text = status;
-        //    }));
-        //}
+        
 
         protected void SetPrompt(string prompt)
         {
@@ -116,6 +187,8 @@ namespace Fingerprint_attendance_mgt
             {
                 foreach (var val in list)
                 {
+                    
+                    Staff_finger = val;
                     f_print = Convert.FromBase64String(val);
                     DPFP.Template temp = new DPFP.Template();
                     temp.DeSerialize(f_print);
@@ -128,11 +201,10 @@ namespace Fingerprint_attendance_mgt
                     {
                         verified = true;
                         MakeReport("The fingerprint was VERIFIED.");
-
+                        dbAccess();
                     }
                         
-                    //else
-                    //    MakeReport("The fingerprint wan NOT VERIFIED.");
+                    
                 }
                 // Compare the feature set with our template
                 if (!verified)
@@ -149,6 +221,126 @@ namespace Fingerprint_attendance_mgt
             list = new List<string>();
             list = db.db_retrieve();
             
+        }
+
+        public void setTextName(string text)
+        {
+            if (textBox_name.InvokeRequired)
+            {
+                setText d = new setText(setTextName);
+                this.Invoke(d, new object[] { text });
+            }
+            textBox_name.Text = text;
+        }
+
+        public void setTextId(string text)
+        {
+            if (textBox_name.InvokeRequired)
+            {
+                setText d = new setText(setTextId);
+                this.Invoke(d, new object[] { text });
+            }
+            textBox_id.Text = text;
+        }
+        public void setTextDept(string text)
+        {
+            if (textBox_name.InvokeRequired)
+            {
+                setText d = new setText(setTextDept);
+                this.Invoke(d, new object[] { text });
+            }
+            textBox_dept.Text = text;
+        }
+        public void setTextPos(string text)
+        {
+            if (textBox_name.InvokeRequired)
+            {
+                setText d = new setText(setTextPos);
+                this.Invoke(d, new object[] { text });
+            }
+            textBox_pos.Text = text;
+        }
+        public void setTextGender(string text)
+        {
+            if (textBox_name.InvokeRequired)
+            {
+                setText d = new setText(setTextGender);
+                this.Invoke(d, new object[] { text });
+            }
+            textBox_gender.Text = text;
+        }
+        public void setTextTimeIn(string text)
+        {
+            if (textBox_timeIn.InvokeRequired)
+            {
+                setText d = new setText(setTextTimeIn);
+                this.Invoke(d, new object[] { text });
+            }
+            textBox_timeIn.Text = text;
+        }
+
+        public void setPhoto(byte[] photo)
+        {
+            
+            Bitmap image = new Bitmap(new MemoryStream(photo));
+            pictureBox1.Image = image;
+        }
+
+
+        public void dbAccess()
+        {
+            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + ";Integrated Security=True;Connect Timeout=30"))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT * FROM [Staff_Enroll] WHERE Fingerprint = @fingerprint ", conn);
+                cmd.Parameters.AddWithValue("fingerprint", Staff_finger);
+
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    setTextName(reader["Full Name"].ToString());
+                    setTextId(reader["Id"].ToString());
+                    setTextDept(reader["Department"].ToString());
+                    setTextPos(reader["Position"].ToString());
+                    setTextGender(reader["Gender"].ToString());
+                    setPhoto((byte[])reader["Photo"]);
+
+                    TimeIn = DateTime.Now.ToString("hh:mm tt");
+                    setTextTimeIn(TimeIn);
+
+
+                    Id = reader["Id"].ToString();
+                    Staff_Date = DateTime.Now.ToString("dd-MMM-yyyy");
+
+                }
+               
+
+            }
+            Database db = new Database();
+            db.updateStaff_Attendance(Id, Staff_Date, TimeIn);
+
+        }
+
+
+
+        public void showStaff_Details()
+        {
+            textBox_name.Text = Staff_finger;
+            //var fing = f_print;
+            //var db = new Database();
+            //db.getStaff_Details();
+
+            //this.textBox_name.Invoke(new setText(showStaff_Details), new object[] { db.Name});
+            //textBox_name.Text = db.Name;
+            //textBox_id.Text = db.Id;
+            //textBox_dept.Text = db.Dept;
+            //textBox_gender.Text = db.Gender;
+            //textBox_pos.Text = db.Position;
+        }
+
+        public void test(string test) {
+            MessageBox.Show(test);
         }
 
         protected void Start()

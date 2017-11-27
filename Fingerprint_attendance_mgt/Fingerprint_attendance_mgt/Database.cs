@@ -82,6 +82,19 @@ namespace Fingerprint_attendance_mgt
                 position = value;
             }
         }
+
+        public byte[] Photo
+        {
+            get
+            {
+                return photo;
+            }
+
+            set
+            {
+                photo = value;
+            }
+        }
         #endregion
 
         public Database()
@@ -143,23 +156,52 @@ namespace Fingerprint_attendance_mgt
             }
         }
 
-        public void getStaff_Details(string f_print)
+        public void getStaff_Details()
         {
+            var atten = new attendance_form();
+            //atten.test(f_print);
+            var print = atten.Staff_finger;
+
             using (conn)
             {
-                var cmd = new SqlCommand("SELECT * FROM [Staff_Enroll] WHERE Fingerprint = @Fingerprint",conn);
-                cmd.Parameters.Add("Fingerprint", SqlDbType.VarChar).Value = f_print;
+                var cmd = new SqlCommand("select [full name] from [staff_enroll] where Department = '@dept'", conn);
+                //if(print == string.Empty)
+                //{
+                //    cmd.Parameters.AddWithValue("fingerprint", DBNull.Value);
+                //}
+                //else
+                //{
+                //    cmd.Parameters.AddWithValue("fingerprint", print);
+                //}
+                cmd.Parameters.AddWithValue("dept", "eee");
                 conn.Open();
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    Name = (string)reader["Full Name"];
-                    Id = (string)reader["Id"];
-                    Dept = (string)reader["Department"];
-                    Gender = (string)reader["Gender"];
-                    Position = (string)reader["Position"];
+                    name = (string)reader["full name"];
+                    //id = reader["id"].ToString();
+                    //dept = (string)reader["department"];
+                    //gender = (string)reader["gender"];
+                    //position = (string)reader["position"];
+                    //photo = (byte[])reader["photo"];
                 }
+            }
+        }
+
+        public void updateStaff_Attendance(string id, string date, string timeIn)
+        {
+            string ti = "yap";
+            using (conn)
+            {
+                var cmd = new SqlCommand("INSERT INTO [Staff_Attendance] VALUES (@Id, @Date, @TimeIn, @TimeOut)", conn);
+                cmd.Parameters.AddWithValue("Id", id);
+                cmd.Parameters.AddWithValue("Date", date);
+                cmd.Parameters.AddWithValue("TimeIn", timeIn);
+                cmd.Parameters.AddWithValue("TimeOut", ti);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
     }

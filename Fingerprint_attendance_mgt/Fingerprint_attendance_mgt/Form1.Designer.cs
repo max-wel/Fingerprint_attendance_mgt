@@ -38,15 +38,15 @@
             this.monthlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox_timeIn = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox_gender = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_pos = new System.Windows.Forms.TextBox();
+            this.textBox_dept = new System.Windows.Forms.TextBox();
+            this.textBox_id = new System.Windows.Forms.TextBox();
+            this.textBox_name = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -121,15 +121,15 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.textBox_timeIn);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.textBox_gender);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textBox_pos);
+            this.groupBox1.Controls.Add(this.textBox_dept);
+            this.groupBox1.Controls.Add(this.textBox_id);
+            this.groupBox1.Controls.Add(this.textBox_name);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -149,12 +149,12 @@
             this.textBox7.Size = new System.Drawing.Size(105, 22);
             this.textBox7.TabIndex = 13;
             // 
-            // textBox6
+            // textBox_timeIn
             // 
-            this.textBox6.Location = new System.Drawing.Point(30, 240);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(105, 22);
-            this.textBox6.TabIndex = 12;
+            this.textBox_timeIn.Location = new System.Drawing.Point(30, 240);
+            this.textBox_timeIn.Name = "textBox_timeIn";
+            this.textBox_timeIn.Size = new System.Drawing.Size(105, 22);
+            this.textBox_timeIn.TabIndex = 12;
             // 
             // label7
             // 
@@ -174,12 +174,12 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "Time In";
             // 
-            // textBox5
+            // textBox_gender
             // 
-            this.textBox5.Location = new System.Drawing.Point(116, 164);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(208, 22);
-            this.textBox5.TabIndex = 9;
+            this.textBox_gender.Location = new System.Drawing.Point(116, 164);
+            this.textBox_gender.Name = "textBox_gender";
+            this.textBox_gender.Size = new System.Drawing.Size(208, 22);
+            this.textBox_gender.TabIndex = 9;
             // 
             // label5
             // 
@@ -190,33 +190,33 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Gender :";
             // 
-            // textBox4
+            // textBox_pos
             // 
-            this.textBox4.Location = new System.Drawing.Point(116, 127);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(208, 22);
-            this.textBox4.TabIndex = 7;
+            this.textBox_pos.Location = new System.Drawing.Point(116, 127);
+            this.textBox_pos.Name = "textBox_pos";
+            this.textBox_pos.Size = new System.Drawing.Size(208, 22);
+            this.textBox_pos.TabIndex = 7;
             // 
-            // textBox3
+            // textBox_dept
             // 
-            this.textBox3.Location = new System.Drawing.Point(116, 94);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(208, 22);
-            this.textBox3.TabIndex = 6;
+            this.textBox_dept.Location = new System.Drawing.Point(116, 94);
+            this.textBox_dept.Name = "textBox_dept";
+            this.textBox_dept.Size = new System.Drawing.Size(208, 22);
+            this.textBox_dept.TabIndex = 6;
             // 
-            // textBox2
+            // textBox_id
             // 
-            this.textBox2.Location = new System.Drawing.Point(116, 59);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(208, 22);
-            this.textBox2.TabIndex = 5;
+            this.textBox_id.Location = new System.Drawing.Point(116, 59);
+            this.textBox_id.Name = "textBox_id";
+            this.textBox_id.Size = new System.Drawing.Size(208, 22);
+            this.textBox_id.TabIndex = 5;
             // 
-            // textBox1
+            // textBox_name
             // 
-            this.textBox1.Location = new System.Drawing.Point(116, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(208, 22);
-            this.textBox1.TabIndex = 4;
+            this.textBox_name.Location = new System.Drawing.Point(116, 24);
+            this.textBox_name.Name = "textBox_name";
+            this.textBox_name.Size = new System.Drawing.Size(208, 22);
+            this.textBox_name.TabIndex = 4;
             // 
             // label4
             // 
@@ -412,15 +412,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_pos;
+        private System.Windows.Forms.TextBox textBox_dept;
+        private System.Windows.Forms.TextBox textBox_id;
+        private System.Windows.Forms.TextBox textBox_name;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox_gender;
         private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox_timeIn;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.StatusStrip statusStrip1;
