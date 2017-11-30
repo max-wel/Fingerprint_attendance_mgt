@@ -29,6 +29,7 @@ namespace Fingerprint_attendance_mgt
         private DPFP.Template Template;
         private DPFP.Verification.Verification Verificator;
 
+
         public string Staff_finger
         {
             get
@@ -201,7 +202,8 @@ namespace Fingerprint_attendance_mgt
                     {
                         verified = true;
                         MakeReport("The fingerprint was VERIFIED.");
-                        dbAccess();
+                        checktimeOut();
+                        //dbAccess();
                     }
                         
                     
@@ -278,6 +280,15 @@ namespace Fingerprint_attendance_mgt
             }
             textBox_timeIn.Text = text;
         }
+        public void setTextTimeOut(string text)
+        {
+            if (textBox_timeOut.InvokeRequired)
+            {
+                setText d = new setText(setTextTimeOut);
+                this.Invoke(d, new object[] { text });
+            }
+            textBox_timeOut.Text = text;
+        }
 
         public void setPhoto(byte[] photo)
         {
@@ -287,7 +298,7 @@ namespace Fingerprint_attendance_mgt
         }
 
 
-        public void dbAccess()
+        public void dbAccess() //db access to update verfication form with name, timeIn, etc
         {
             using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + ";Integrated Security=True;Connect Timeout=30"))
             {
@@ -321,6 +332,41 @@ namespace Fingerprint_attendance_mgt
             db.updateStaff_Attendance(Id, Staff_Date, TimeIn);
 
         }
+
+        public void checktimeOut()
+        {
+            using(var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + ";Integrated Security=True;Connect Timeout=30"))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT * FROM [Staff_Enroll] WHERE Fingerprint = @fingerprint ", conn);
+                cmd.Parameters.AddWithValue("fingerprint", Staff_finger);
+
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Id = reader["Id"].ToString();
+                }
+            }
+
+            Database db = new Database();
+            var date = DateTime.Now.ToString("dd-MMM-yyyy");
+            //var timeIn = db.timeIn_retrieve(Id, date);
+            string timeIn;
+            db.timeIn_retrieve(Id, date, out timeIn);
+            MessageBox.Show(timeIn);
+            if (!string.IsNullOrEmpty(timeIn))
+            {
+                TimeOut = DateTime.Now.ToString("hh:mm tt");
+                setTextTimeOut(TimeOut);
+                
+            }
+            else
+            {
+                dbAccess();
+            }
+        }
+
 
 
 

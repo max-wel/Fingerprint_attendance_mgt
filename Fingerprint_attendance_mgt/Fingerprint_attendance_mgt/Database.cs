@@ -16,6 +16,7 @@ namespace Fingerprint_attendance_mgt
         private byte[] photo;
         private string path, dbName;
         private SqlConnection conn;
+        string time_, date;
 
         #region member variables
         public string Id
@@ -156,53 +157,74 @@ namespace Fingerprint_attendance_mgt
             }
         }
 
-        public void getStaff_Details()
-        {
-            var atten = new attendance_form();
-            //atten.test(f_print);
-            var print = atten.Staff_finger;
+        //public void getStaff_Details()
+        //{
+        //    var atten = new attendance_form();
+        //    //atten.test(f_print);
+        //    var print = atten.Staff_finger;
 
-            using (conn)
-            {
-                var cmd = new SqlCommand("select [full name] from [staff_enroll] where Department = '@dept'", conn);
-                //if(print == string.Empty)
-                //{
-                //    cmd.Parameters.AddWithValue("fingerprint", DBNull.Value);
-                //}
-                //else
-                //{
-                //    cmd.Parameters.AddWithValue("fingerprint", print);
-                //}
-                cmd.Parameters.AddWithValue("dept", "eee");
-                conn.Open();
-                var reader = cmd.ExecuteReader();
+        //    using (conn)
+        //    {
+        //        var cmd = new SqlCommand("select [full name] from [staff_enroll] where Department = '@dept'", conn);
+        //        //if(print == string.Empty)
+        //        //{
+        //        //    cmd.Parameters.AddWithValue("fingerprint", DBNull.Value);
+        //        //}
+        //        //else
+        //        //{
+        //        //    cmd.Parameters.AddWithValue("fingerprint", print);
+        //        //}
+        //        cmd.Parameters.AddWithValue("dept", "eee");
+        //        conn.Open();
+        //        var reader = cmd.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    name = (string)reader["full name"];
-                    //id = reader["id"].ToString();
-                    //dept = (string)reader["department"];
-                    //gender = (string)reader["gender"];
-                    //position = (string)reader["position"];
-                    //photo = (byte[])reader["photo"];
-                }
-            }
-        }
+        //        while (reader.Read())
+        //        {
+        //            name = (string)reader["full name"];
+        //            //id = reader["id"].ToString();
+        //            //dept = (string)reader["department"];
+        //            //gender = (string)reader["gender"];
+        //            //position = (string)reader["position"];
+        //            //photo = (byte[])reader["photo"];
+        //        }
+        //    }
+        //}
 
         public void updateStaff_Attendance(string id, string date, string timeIn)
         {
-            string ti = "yap";
+            
             using (conn)
             {
-                var cmd = new SqlCommand("INSERT INTO [Staff_Attendance] VALUES (@Id, @Date, @TimeIn, @TimeOut)", conn);
+                var cmd = new SqlCommand("INSERT INTO [Staff_Attendance](Id, Date, TimeIn) VALUES (@Id, @Date, @TimeIn)", conn);
                 cmd.Parameters.AddWithValue("Id", id);
                 cmd.Parameters.AddWithValue("Date", date);
                 cmd.Parameters.AddWithValue("TimeIn", timeIn);
-                cmd.Parameters.AddWithValue("TimeOut", ti);
+                //cmd.Parameters.AddWithValue("TimeOut", null);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public void timeIn_retrieve(string id, string date, out string time)
+        {
+            //string time;
+            using (conn)
+            {
+                var cmd = new SqlCommand("SELECT TimeIn, Date FROM [Staff_Attendance] WHERE Id = @id",conn);
+                cmd.Parameters.AddWithValue("id", Int32.Parse(id));
+                //cmd.Parameters.AddWithValue("date", date);
+                conn.Open();
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    time_ = reader["TimeIn"].ToString();
+                    date = reader["Date"].ToString();
+                }
+            }
+            time = time_;
+            //return time;
+            //return date;
         }
     }
 }

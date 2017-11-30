@@ -37,7 +37,7 @@
             this.dailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.monthlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox_timeOut = new System.Windows.Forms.TextBox();
             this.textBox_timeIn = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox7);
+            this.groupBox1.Controls.Add(this.textBox_timeOut);
             this.groupBox1.Controls.Add(this.textBox_timeIn);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -142,12 +142,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Staff Details";
             // 
-            // textBox7
+            // textBox_timeOut
             // 
-            this.textBox7.Location = new System.Drawing.Point(210, 240);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(105, 22);
-            this.textBox7.TabIndex = 13;
+            this.textBox_timeOut.Location = new System.Drawing.Point(210, 240);
+            this.textBox_timeOut.Name = "textBox_timeOut";
+            this.textBox_timeOut.Size = new System.Drawing.Size(105, 22);
+            this.textBox_timeOut.TabIndex = 13;
             // 
             // textBox_timeIn
             // 
@@ -419,7 +419,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox_gender;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox_timeOut;
         private System.Windows.Forms.TextBox textBox_timeIn;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
