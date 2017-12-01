@@ -54,8 +54,6 @@
             this.date = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.time = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Prompt = new System.Windows.Forms.TextBox();
             this.StatusText = new System.Windows.Forms.TextBox();
@@ -78,7 +76,7 @@
             this.logToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1139, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1145, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -119,7 +117,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(205, 40);
+            this.groupBox1.Location = new System.Drawing.Point(204, 77);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(349, 276);
             this.groupBox1.TabIndex = 2;
@@ -244,12 +242,10 @@
             this.toolStripStatusLabel1,
             this.date,
             this.toolStripStatusLabel3,
-            this.time,
-            this.toolStripStatusLabel5,
-            this.toolStripStatusLabel6});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 432);
+            this.time});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 469);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1139, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1145, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -277,23 +273,11 @@
             this.time.Size = new System.Drawing.Size(96, 17);
             this.time.Text = "XX : XX : XX - PM";
             // 
-            // toolStripStatusLabel5
-            // 
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(74, 17);
-            this.toolStripStatusLabel5.Text = "       STATUS :";
-            // 
-            // toolStripStatusLabel6
-            // 
-            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(63, 17);
-            this.toolStripStatusLabel6.Text = "XXXXXXXX";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 49);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 77);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(167, 168);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -302,14 +286,14 @@
             // 
             // Prompt
             // 
-            this.Prompt.Location = new System.Drawing.Point(879, 70);
+            this.Prompt.Location = new System.Drawing.Point(879, 77);
             this.Prompt.Name = "Prompt";
             this.Prompt.Size = new System.Drawing.Size(216, 20);
             this.Prompt.TabIndex = 6;
             // 
             // StatusText
             // 
-            this.StatusText.Location = new System.Drawing.Point(879, 153);
+            this.StatusText.Location = new System.Drawing.Point(879, 177);
             this.StatusText.Multiline = true;
             this.StatusText.Name = "StatusText";
             this.StatusText.Size = new System.Drawing.Size(216, 200);
@@ -319,7 +303,7 @@
             // 
             this.Picture.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Picture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Picture.Location = new System.Drawing.Point(597, 48);
+            this.Picture.Location = new System.Drawing.Point(597, 77);
             this.Picture.Name = "Picture";
             this.Picture.Size = new System.Drawing.Size(201, 219);
             this.Picture.TabIndex = 8;
@@ -329,7 +313,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(876, 45);
+            this.label8.Location = new System.Drawing.Point(876, 50);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(50, 15);
             this.label8.TabIndex = 9;
@@ -339,7 +323,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(876, 123);
+            this.label9.Location = new System.Drawing.Point(876, 143);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 15);
             this.label9.TabIndex = 10;
@@ -355,7 +339,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1139, 454);
+            this.ClientSize = new System.Drawing.Size(1145, 491);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.Picture);
@@ -411,8 +395,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel time;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
         private System.Windows.Forms.TextBox Prompt;
         private System.Windows.Forms.TextBox StatusText;
         private System.Windows.Forms.PictureBox Picture;

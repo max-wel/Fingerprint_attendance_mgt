@@ -55,6 +55,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.StatusLine = new System.Windows.Forms.Label();
+            this.clear_button = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -95,8 +96,9 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(503, 36);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(192, 186);
@@ -107,6 +109,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.clear_button);
             this.groupBox1.Controls.Add(this.update_button);
             this.groupBox1.Controls.Add(this.Position_comboBox);
             this.groupBox1.Controls.Add(this.Gender_comboBox);
@@ -132,7 +135,7 @@
             // 
             // update_button
             // 
-            this.update_button.Location = new System.Drawing.Point(125, 366);
+            this.update_button.Location = new System.Drawing.Point(47, 369);
             this.update_button.Name = "update_button";
             this.update_button.Size = new System.Drawing.Size(109, 27);
             this.update_button.TabIndex = 17;
@@ -334,6 +337,16 @@
             this.StatusLine.TabIndex = 6;
             this.StatusLine.Text = "[Status Line]";
             // 
+            // clear_button
+            // 
+            this.clear_button.Location = new System.Drawing.Point(234, 369);
+            this.clear_button.Name = "clear_button";
+            this.clear_button.Size = new System.Drawing.Size(109, 27);
+            this.clear_button.TabIndex = 18;
+            this.clear_button.Text = "Clear";
+            this.clear_button.UseVisualStyleBackColor = true;
+            this.clear_button.Click += new System.EventHandler(this.clear_button_Click);
+            // 
             // Enroll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -388,5 +401,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label StatusLine;
+        private System.Windows.Forms.Button clear_button;
     }
 }

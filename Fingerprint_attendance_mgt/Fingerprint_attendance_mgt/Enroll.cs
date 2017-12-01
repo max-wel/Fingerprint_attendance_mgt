@@ -200,6 +200,7 @@ namespace Fingerprint_attendance_mgt
         {
             Init();
             Start();
+            
         }
 
         private void Enroll_FormClosed(object sender, FormClosedEventArgs e)
@@ -298,7 +299,9 @@ namespace Fingerprint_attendance_mgt
             }));
         }
 
-       
+        
+
+
 
 
         //public void staffDetails()
@@ -371,10 +374,19 @@ namespace Fingerprint_attendance_mgt
             Email = Email_text.Text;
 
             byte[] bytes = new byte[1632];
-            Template.Serialize(ref bytes);
-            fp_string = Convert.ToBase64String(bytes);
+            try
+            {
+                Template.Serialize(ref bytes);
+                fp_string = Convert.ToBase64String(bytes);
 
-            dbUpdate();
+                dbUpdate();
+            }
+            catch(NullReferenceException)
+            {
+                MessageBox.Show("Enroll Fingerprint");
+            }
+            
+           
 
         }
 
@@ -382,6 +394,7 @@ namespace Fingerprint_attendance_mgt
         {
             Database db = new Database();
             db.dbEnroll(Id_num, Name1, Department, Gender, Position, Phone, Email, img_arr, fp_string);
+            MessageBox.Show("User Enrolled");
         }
 
         public void sqlexception_handle()
@@ -394,6 +407,18 @@ namespace Fingerprint_attendance_mgt
         {
             // Show number of samples needed.
             SetStatus(String.Format("Fingerprint samples needed: {0}", Enroller.FeaturesNeeded));
+        }
+
+        private void clear_button_Click(object sender, EventArgs e)
+        {
+            Init();
+            Start();
+            Name_text.Text = null;
+            Id_text.Text = null;
+            Dept_text.Text = null;
+            Phone_text.Text = null;
+            Email_text.Text = null;
+            pictureBox1.Image = pictureBox1.BackgroundImage;
         }
 
         private DPFP.Processing.Enrollment Enroller;

@@ -247,7 +247,7 @@ namespace Fingerprint_attendance_mgt
             using (conn)
             {
                 conn.Open();
-                var adapter = new SqlDataAdapter("SELECT * FROM [Staff_Attendance] WHERE Date BETWEEN @date_from AND @date_to", conn);
+                var adapter = new SqlDataAdapter("SELECT  FROM [Staff_Attendance] WHERE Date BETWEEN @date_from AND @date_to", conn);
                 adapter.SelectCommand.Parameters.AddWithValue("@date_from", date_from);
                 adapter.SelectCommand.Parameters.AddWithValue("@date_to", date_to);
                 adapter.Fill(dt);

@@ -362,7 +362,7 @@ namespace Fingerprint_attendance_mgt
             string timeIn;
             string out_date;
             db.timeIn_retrieve(Id, date, out timeIn, out out_date);
-            MessageBox.Show(timeIn);
+            //MessageBox.Show(timeIn);
             if (!string.IsNullOrEmpty(timeIn) && string.Equals(out_date, date))
             {
                 TimeOut = DateTime.Now.ToString("hh:mm tt");
@@ -451,6 +451,8 @@ namespace Fingerprint_attendance_mgt
 
         }
 
+       
+
         private void attendance_form_Load(object sender, EventArgs e)
         {
             get_fprint();
@@ -466,6 +468,7 @@ namespace Fingerprint_attendance_mgt
 
         private void attendance_form_Activated(object sender, EventArgs e)
         {
+            get_fprint();
             Start();
         }
     }
