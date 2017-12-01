@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp;
 
 namespace Fingerprint_attendance_mgt
 {
@@ -346,6 +347,12 @@ namespace Fingerprint_attendance_mgt
                 while (reader.Read())
                 {
                     Id = reader["Id"].ToString();
+                    setTextName(reader["Full Name"].ToString());
+                    setTextId(reader["Id"].ToString());
+                    setTextDept(reader["Department"].ToString());
+                    setTextPos(reader["Position"].ToString());
+                    setTextGender(reader["Gender"].ToString());
+                    setPhoto((byte[])reader["Photo"]);
                 }
             }
 
@@ -353,13 +360,16 @@ namespace Fingerprint_attendance_mgt
             var date = DateTime.Now.ToString("dd-MMM-yyyy");
             //var timeIn = db.timeIn_retrieve(Id, date);
             string timeIn;
-            db.timeIn_retrieve(Id, date, out timeIn);
+            string out_date;
+            db.timeIn_retrieve(Id, date, out timeIn, out out_date);
             MessageBox.Show(timeIn);
-            if (!string.IsNullOrEmpty(timeIn))
+            if (!string.IsNullOrEmpty(timeIn) && string.Equals(out_date, date))
             {
                 TimeOut = DateTime.Now.ToString("hh:mm tt");
                 setTextTimeOut(TimeOut);
-                
+                setTextTimeIn(timeIn);
+                Database db_ = new Database();
+                db_.updatetimeOut(Id, date, TimeOut);
             }
             else
             {
@@ -431,6 +441,14 @@ namespace Fingerprint_attendance_mgt
         {
             date.Text = DateTime.Now.ToString("dd-MMM-yyyy");
             time.Text = DateTime.Now.ToString("hh:mm:ss tt");
+        }
+
+        private void logToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var log = new Log();
+            log.ShowDialog();
+            
+
         }
 
         private void attendance_form_Load(object sender, EventArgs e)

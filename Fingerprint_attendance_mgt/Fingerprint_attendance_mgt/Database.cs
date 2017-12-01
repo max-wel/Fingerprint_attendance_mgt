@@ -16,7 +16,7 @@ namespace Fingerprint_attendance_mgt
         private byte[] photo;
         private string path, dbName;
         private SqlConnection conn;
-        string time_, date;
+        string time_, date_;
 
         #region member variables
         public string Id
@@ -206,7 +206,20 @@ namespace Fingerprint_attendance_mgt
             }
         }
 
-        public void timeIn_retrieve(string id, string date, out string time)
+        public void updatetimeOut(string id, string date, string time)
+        {
+            using (conn)
+            {
+                var cmd = new SqlCommand("UPDATE [Staff_Attendance] SET TimeOut = @time WHERE Id = @id AND Date = @date", conn);
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.Parameters.AddWithValue("date", date);
+                cmd.Parameters.AddWithValue("time", time);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void timeIn_retrieve(string id, string date, out string time, out string out_date)
         {
             //string time;
             using (conn)
@@ -219,12 +232,27 @@ namespace Fingerprint_attendance_mgt
                 while (reader.Read())
                 {
                     time_ = reader["TimeIn"].ToString();
-                    date = reader["Date"].ToString();
+                    date_ = reader["Date"].ToString();
                 }
             }
             time = time_;
+            out_date = date_;
             //return time;
             //return date;
+        }
+
+        public DataTable dailylog_retrieve(string date_from, string date_to)
+        {
+            DataTable dt = new DataTable();
+            using (conn)
+            {
+                conn.Open();
+                var adapter = new SqlDataAdapter("SELECT * FROM [Staff_Attendance] WHERE Date BETWEEN @date_from AND @date_to", conn);
+                adapter.SelectCommand.Parameters.AddWithValue("@date_from", date_from);
+                adapter.SelectCommand.Parameters.AddWithValue("@date_to", date_to);
+                adapter.Fill(dt);
+            }
+            return dt;
         }
     }
 }

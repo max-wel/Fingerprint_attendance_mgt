@@ -34,8 +34,6 @@
             this.staffEnrollmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.attendanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.monthlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox_timeOut = new System.Windows.Forms.TextBox();
             this.textBox_timeIn = new System.Windows.Forms.TextBox();
@@ -99,24 +97,10 @@
             // 
             // logToolStripMenuItem
             // 
-            this.logToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dailyToolStripMenuItem,
-            this.monthlyToolStripMenuItem});
             this.logToolStripMenuItem.Name = "logToolStripMenuItem";
             this.logToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.logToolStripMenuItem.Text = "Log";
-            // 
-            // dailyToolStripMenuItem
-            // 
-            this.dailyToolStripMenuItem.Name = "dailyToolStripMenuItem";
-            this.dailyToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.dailyToolStripMenuItem.Text = "Daily";
-            // 
-            // monthlyToolStripMenuItem
-            // 
-            this.monthlyToolStripMenuItem.Name = "monthlyToolStripMenuItem";
-            this.monthlyToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.monthlyToolStripMenuItem.Text = "Monthly";
+            this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -406,8 +390,6 @@
         private System.Windows.Forms.ToolStripMenuItem staffEnrollmentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem attendanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dailyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem monthlyToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
