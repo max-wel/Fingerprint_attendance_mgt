@@ -38,9 +38,9 @@ namespace Fingerprint_attendance_mgt
             var db = new Database();
             if (textBox_user.Text != string.Empty && textBox_pass.Text != string.Empty)
             {
-                this.Close();
-                db.loginCheck(textBox_user.Text, textBox_pass.Text);
                 
+                db.loginCheck(textBox_user.Text, textBox_pass.Text);
+                this.Close();
             }
             else if (textBox_user.Text == string.Empty)
             {

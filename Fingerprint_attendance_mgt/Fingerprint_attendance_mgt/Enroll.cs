@@ -427,6 +427,9 @@ namespace Fingerprint_attendance_mgt
             Phone_text.Text = null;
             Email_text.Text = null;
             pictureBox1.Image = pictureBox1.BackgroundImage;
+
+            StatusText.Text = null;
+            Picture.Image = null;
         }
 
         private DPFP.Processing.Enrollment Enroller;

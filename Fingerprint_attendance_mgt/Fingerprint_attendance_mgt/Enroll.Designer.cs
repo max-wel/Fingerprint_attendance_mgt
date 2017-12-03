@@ -34,6 +34,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.clear_button = new System.Windows.Forms.Button();
             this.update_button = new System.Windows.Forms.Button();
             this.Position_comboBox = new System.Windows.Forms.ComboBox();
             this.Gender_comboBox = new System.Windows.Forms.ComboBox();
@@ -55,7 +56,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.StatusLine = new System.Windows.Forms.Label();
-            this.clear_button = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -133,6 +133,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "STAFF DETAILS";
             // 
+            // clear_button
+            // 
+            this.clear_button.Location = new System.Drawing.Point(234, 369);
+            this.clear_button.Name = "clear_button";
+            this.clear_button.Size = new System.Drawing.Size(109, 27);
+            this.clear_button.TabIndex = 18;
+            this.clear_button.Text = "Clear";
+            this.clear_button.UseVisualStyleBackColor = true;
+            this.clear_button.Click += new System.EventHandler(this.clear_button_Click);
+            // 
             // update_button
             // 
             this.update_button.Location = new System.Drawing.Point(47, 369);
@@ -147,6 +157,7 @@
             // 
             this.Position_comboBox.FormattingEnabled = true;
             this.Position_comboBox.Items.AddRange(new object[] {
+            "Professor",
             "Reader",
             "Senior Lecturer",
             "HOD",
@@ -336,16 +347,6 @@
             this.StatusLine.Size = new System.Drawing.Size(266, 51);
             this.StatusLine.TabIndex = 6;
             this.StatusLine.Text = "[Status Line]";
-            // 
-            // clear_button
-            // 
-            this.clear_button.Location = new System.Drawing.Point(234, 369);
-            this.clear_button.Name = "clear_button";
-            this.clear_button.Size = new System.Drawing.Size(109, 27);
-            this.clear_button.TabIndex = 18;
-            this.clear_button.Text = "Clear";
-            this.clear_button.UseVisualStyleBackColor = true;
-            this.clear_button.Click += new System.EventHandler(this.clear_button_Click);
             // 
             // Enroll
             // 
