@@ -127,5 +127,24 @@ namespace Fingerprint_attendance_mgt
         {
             pdf_gen(table);
         }
+
+        private void button_remove_Click(object sender, EventArgs e)
+        {
+            var db = new Database();
+            db.remove_staff(textBox_staff_id.Text.Replace(" ", string.Empty));
+
+        }
+
+        private void button_clear_Click(object sender, EventArgs e)
+        {
+            var db = new Database();
+            db.clear_attendance();
+        }
+
+        private void button_delete_Click(object sender, EventArgs e)
+        {
+            var db = new Database();
+            db.deleteAll();
+        }
     }
 }

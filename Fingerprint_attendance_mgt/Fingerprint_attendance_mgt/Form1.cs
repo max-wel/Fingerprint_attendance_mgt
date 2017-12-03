@@ -459,8 +459,8 @@ namespace Fingerprint_attendance_mgt
 
         private void logToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var log = new Log();
-            log.ShowDialog();
+            var login = new Login();
+            login.ShowDialog();
             
 
         }

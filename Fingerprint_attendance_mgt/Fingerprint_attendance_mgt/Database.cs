@@ -255,5 +255,58 @@ namespace Fingerprint_attendance_mgt
             }
             return dt;
         }
+
+        public void loginCheck(string username, string password)
+        {
+            var login = new Login();
+            using (conn)
+            {
+                var cmd = new SqlCommand("SELECT COUNT(*) FROM LoginTable WHERE Username = @username AND Password = @password", conn);
+                cmd.Parameters.AddWithValue("username", username);
+                cmd.Parameters.AddWithValue("password", password);
+
+                conn.Open();
+                if ((int)cmd.ExecuteScalar() > 0)
+                {
+                    login.valid();
+                }
+                else
+                {
+                    login.invalid();
+                }
+            }
+        }
+
+        public void remove_staff(string id)
+        {
+            using (conn)
+            {
+                var cmd = new SqlCommand("DELETE FROM Staff_Enroll WHERE Id = @id ", conn);
+                cmd.Parameters.AddWithValue("id", id);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void clear_attendance()
+        {
+            using (conn)
+            {
+                var cmd = new SqlCommand("DELETE FROM Staff_Attendance ", conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            
+        }
+
+        public void deleteAll()
+        {
+            using (conn)
+            {
+                var cmd = new SqlCommand("DELETE FROM Staff_Enroll ", conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

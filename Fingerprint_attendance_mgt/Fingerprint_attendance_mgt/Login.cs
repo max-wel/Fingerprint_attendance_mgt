@@ -16,5 +16,40 @@ namespace Fingerprint_attendance_mgt
         {
             InitializeComponent();
         }
+
+        public void valid()
+        {
+            
+            MessageBox.Show("Login Successful");
+            
+            var log = new Log();
+            
+            log.ShowDialog();
+            
+        }
+
+        public void invalid()
+        {
+            MessageBox.Show("Incorrect Username or Password");
+        }
+
+        private void button_login_Click(object sender, EventArgs e)
+        {
+            var db = new Database();
+            if (textBox_user.Text != string.Empty && textBox_pass.Text != string.Empty)
+            {
+                this.Close();
+                db.loginCheck(textBox_user.Text, textBox_pass.Text);
+                
+            }
+            else if (textBox_user.Text == string.Empty)
+            {
+                MessageBox.Show("Enter Username");
+            }
+            else
+            {
+                MessageBox.Show("Enter Password");
+            }
+        }
     }
 }

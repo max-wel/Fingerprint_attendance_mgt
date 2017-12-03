@@ -36,11 +36,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.button_remove = new System.Windows.Forms.Button();
+            this.button_clear = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox_staff_id = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button_delete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -109,32 +110,35 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // button_remove
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(77, 81);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(95, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Remove Staff";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button_remove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_remove.Location = new System.Drawing.Point(77, 81);
+            this.button_remove.Name = "button_remove";
+            this.button_remove.Size = new System.Drawing.Size(95, 23);
+            this.button_remove.TabIndex = 7;
+            this.button_remove.Text = "Remove Staff";
+            this.button_remove.UseVisualStyleBackColor = true;
+            this.button_remove.Click += new System.EventHandler(this.button_remove_Click);
             // 
-            // button4
+            // button_clear
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(77, 142);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 41);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Clear Attendance";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_clear.Location = new System.Drawing.Point(77, 142);
+            this.button_clear.Name = "button_clear";
+            this.button_clear.Size = new System.Drawing.Size(95, 41);
+            this.button_clear.TabIndex = 8;
+            this.button_clear.Text = "Clear Attendance";
+            this.button_clear.UseVisualStyleBackColor = true;
+            this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.button_delete);
+            this.groupBox1.Controls.Add(this.textBox_staff_id);
+            this.groupBox1.Controls.Add(this.button_clear);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button_remove);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(839, 53);
             this.groupBox1.Name = "groupBox1";
@@ -142,6 +146,13 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Admin";
+            // 
+            // textBox_staff_id
+            // 
+            this.textBox_staff_id.Location = new System.Drawing.Point(72, 40);
+            this.textBox_staff_id.Name = "textBox_staff_id";
+            this.textBox_staff_id.Size = new System.Drawing.Size(100, 21);
+            this.textBox_staff_id.TabIndex = 10;
             // 
             // label3
             // 
@@ -153,12 +164,16 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Staff Id :";
             // 
-            // textBox1
+            // button_delete
             // 
-            this.textBox1.Location = new System.Drawing.Point(72, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 10;
+            this.button_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_delete.Location = new System.Drawing.Point(77, 221);
+            this.button_delete.Name = "button_delete";
+            this.button_delete.Size = new System.Drawing.Size(95, 23);
+            this.button_delete.TabIndex = 11;
+            this.button_delete.Text = "Delete All";
+            this.button_delete.UseVisualStyleBackColor = true;
+            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
             // 
             // Log
             // 
@@ -194,10 +209,11 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button_remove;
+        private System.Windows.Forms.Button button_clear;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_staff_id;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button_delete;
     }
 }
