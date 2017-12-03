@@ -39,9 +39,9 @@
             this.button_remove = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_delete = new System.Windows.Forms.Button();
             this.textBox_staff_id = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button_delete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +52,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(15, 53);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(764, 373);
+            this.dataGridView1.Size = new System.Drawing.Size(778, 435);
             this.dataGridView1.TabIndex = 0;
             // 
             // textBox_from
@@ -147,6 +147,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Admin";
             // 
+            // button_delete
+            // 
+            this.button_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_delete.Location = new System.Drawing.Point(77, 221);
+            this.button_delete.Name = "button_delete";
+            this.button_delete.Size = new System.Drawing.Size(95, 23);
+            this.button_delete.TabIndex = 11;
+            this.button_delete.Text = "Delete All";
+            this.button_delete.UseVisualStyleBackColor = true;
+            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
+            // 
             // textBox_staff_id
             // 
             this.textBox_staff_id.Location = new System.Drawing.Point(72, 40);
@@ -164,17 +175,6 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Staff Id :";
             // 
-            // button_delete
-            // 
-            this.button_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_delete.Location = new System.Drawing.Point(77, 221);
-            this.button_delete.Name = "button_delete";
-            this.button_delete.Size = new System.Drawing.Size(95, 23);
-            this.button_delete.TabIndex = 11;
-            this.button_delete.Text = "Delete All";
-            this.button_delete.UseVisualStyleBackColor = true;
-            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
-            // 
             // Log
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -188,6 +188,7 @@
             this.Controls.Add(this.textBox_to);
             this.Controls.Add(this.textBox_from);
             this.Controls.Add(this.dataGridView1);
+            this.MaximizeBox = false;
             this.Name = "Log";
             this.Text = "Log";
             this.Load += new System.EventHandler(this.Log_Load);
