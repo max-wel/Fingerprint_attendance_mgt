@@ -261,7 +261,15 @@ namespace Fingerprint_attendance_mgt
             DPFP.Processing.FeatureExtraction Extractor = new DPFP.Processing.FeatureExtraction();  // Create a feature extractor
             DPFP.Capture.CaptureFeedback feedback = DPFP.Capture.CaptureFeedback.None;
             DPFP.FeatureSet features = new DPFP.FeatureSet();
-            Extractor.CreateFeatureSet(Sample, Purpose, ref feedback, ref features);            // TODO: return features as a result?
+            try
+            {
+                Extractor.CreateFeatureSet(Sample, Purpose, ref feedback, ref features);
+            }
+            catch (DPFP.Error.SDKException)
+            {
+                MessageBox.Show("Place Finger on the scanner surface");
+            }
+                       // TODO: return features as a result?
             if (feedback == DPFP.Capture.CaptureFeedback.Good)
                 return features;
             else

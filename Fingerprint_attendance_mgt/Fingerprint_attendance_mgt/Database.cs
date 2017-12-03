@@ -190,15 +190,16 @@ namespace Fingerprint_attendance_mgt
         //    }
         //}
 
-        public void updateStaff_Attendance(string id, string date, string timeIn)
+        public void updateStaff_Attendance(string id, string date, string timeIn, string name)
         {
             
             using (conn)
             {
-                var cmd = new SqlCommand("INSERT INTO [Staff_Attendance](Id, Date, TimeIn) VALUES (@Id, @Date, @TimeIn)", conn);
+                var cmd = new SqlCommand("INSERT INTO [Staff_Attendance](Id, Date, TimeIn, Name) VALUES (@Id, @Date, @TimeIn, @name)", conn);
                 cmd.Parameters.AddWithValue("Id", id);
                 cmd.Parameters.AddWithValue("Date", date);
                 cmd.Parameters.AddWithValue("TimeIn", timeIn);
+                cmd.Parameters.AddWithValue("name", name);
                 //cmd.Parameters.AddWithValue("TimeOut", null);
 
                 conn.Open();
@@ -247,7 +248,7 @@ namespace Fingerprint_attendance_mgt
             using (conn)
             {
                 conn.Open();
-                var adapter = new SqlDataAdapter("SELECT  FROM [Staff_Attendance] WHERE Date BETWEEN @date_from AND @date_to", conn);
+                var adapter = new SqlDataAdapter("SELECT Id, Name, Date, TimeIn, TimeOut FROM [Staff_Attendance] WHERE Date BETWEEN @date_from AND @date_to", conn);
                 adapter.SelectCommand.Parameters.AddWithValue("@date_from", date_from);
                 adapter.SelectCommand.Parameters.AddWithValue("@date_to", date_to);
                 adapter.Fill(dt);

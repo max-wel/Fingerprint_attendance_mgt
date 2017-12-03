@@ -19,7 +19,7 @@ namespace Fingerprint_attendance_mgt
     public partial class attendance_form : Form, DPFP.Capture.EventHandler
     {
         private string staff_finger; //variable to hold staff fingerprint from list for identification
-        private string id,staff_Date, timeIn, timeOut;  //variables for storing staff date, timein and timeout
+        private string id,staff_Date, timeIn, timeOut, name;  //variables for storing staff date, timein and timeout
         private string path = Path.GetFullPath(Environment.CurrentDirectory);
         private string dbName = "Attendance_mgt.mdf";
         //SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + ";Integrated Security=True;Connect Timeout=30");
@@ -93,6 +93,19 @@ namespace Fingerprint_attendance_mgt
             set
             {
                 timeOut = value;
+            }
+        }
+
+        public string Name1
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
             }
         }
 
@@ -323,6 +336,7 @@ namespace Fingerprint_attendance_mgt
 
 
                     Id = reader["Id"].ToString();
+                    Name1 = reader["Full Name"].ToString();
                     Staff_Date = DateTime.Now.ToString("dd-MMM-yyyy");
 
                 }
@@ -330,7 +344,7 @@ namespace Fingerprint_attendance_mgt
 
             }
             Database db = new Database();
-            db.updateStaff_Attendance(Id, Staff_Date, TimeIn);
+            db.updateStaff_Attendance(Id, Staff_Date, TimeIn, Name1);
 
         }
 
