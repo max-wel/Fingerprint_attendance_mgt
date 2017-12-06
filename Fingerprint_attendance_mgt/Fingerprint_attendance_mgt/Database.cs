@@ -106,13 +106,13 @@ namespace Fingerprint_attendance_mgt
         }
 
      
-        public void dbEnroll(string id,string fullname, string dept, string gender, string pos, string phone, string email, byte[] photo, string fprint)
+        public void dbEnroll(string id,string fullname, string dept, string gender, string pos, string phone, string email, byte[] photo, string fprint, string level, string category)
         {
             using (conn)
             {
                 try
                 {
-                    var cmd = new SqlCommand("INSERT INTO [Staff_Enroll] VALUES (@id, @name, @dept, @gender, @position,@phone, @email, @photo, @fprint)", conn);
+                    var cmd = new SqlCommand("INSERT INTO [Staff_Enroll] VALUES (@id, @name, @dept, @gender, @position,@phone, @email, @photo, @fprint, @level, @category)", conn);
                     cmd.Parameters.AddWithValue("id", id);
                     cmd.Parameters.AddWithValue("name", fullname);
                     cmd.Parameters.AddWithValue("dept", dept);
@@ -122,6 +122,8 @@ namespace Fingerprint_attendance_mgt
                     cmd.Parameters.AddWithValue("email", email);
                     cmd.Parameters.AddWithValue("photo", photo);
                     cmd.Parameters.Add("fprint", SqlDbType.VarChar).Value = fprint;
+                    cmd.Parameters.AddWithValue("level", level);
+                    cmd.Parameters.AddWithValue("category", category);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -190,16 +192,18 @@ namespace Fingerprint_attendance_mgt
         //    }
         //}
 
-        public void updateStaff_Attendance(string id, string date, string timeIn, string name)
+        public void updateStaff_Attendance(string id, string date, string timeIn, string name, string level, string category)
         {
             
             using (conn)
             {
-                var cmd = new SqlCommand("INSERT INTO [Staff_Attendance](Id, Date, TimeIn, Name) VALUES (@Id, @Date, @TimeIn, @name)", conn);
+                var cmd = new SqlCommand("INSERT INTO [Staff_Attendance](Id, Date, TimeIn, Name, Level, Category) VALUES (@Id, @Date, @TimeIn, @name, @level, @category)", conn);
                 cmd.Parameters.AddWithValue("Id", id);
                 cmd.Parameters.AddWithValue("Date", date);
                 cmd.Parameters.AddWithValue("TimeIn", timeIn);
                 cmd.Parameters.AddWithValue("name", name);
+                cmd.Parameters.AddWithValue("level", level);
+                cmd.Parameters.AddWithValue("category", category);
                 //cmd.Parameters.AddWithValue("TimeOut", null);
 
                 conn.Open();
@@ -248,7 +252,7 @@ namespace Fingerprint_attendance_mgt
             using (conn)
             {
                 conn.Open();
-                var adapter = new SqlDataAdapter("SELECT Id, Name, Date, TimeIn, TimeOut FROM [Staff_Attendance] WHERE Date BETWEEN @date_from AND @date_to", conn);
+                var adapter = new SqlDataAdapter("SELECT Id, Name, Level, Category, Date, TimeIn, TimeOut FROM [Staff_Attendance] WHERE Date BETWEEN @date_from AND @date_to", conn);
                 adapter.SelectCommand.Parameters.AddWithValue("@date_from", date_from);
                 adapter.SelectCommand.Parameters.AddWithValue("@date_to", date_to);
                 adapter.Fill(dt);

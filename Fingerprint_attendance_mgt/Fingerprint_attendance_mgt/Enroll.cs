@@ -14,7 +14,7 @@ namespace Fingerprint_attendance_mgt
 {
     public partial class Enroll : Form, DPFP.Capture.EventHandler
     {
-        private String name, id_num, department, gender, position, email, phone, fp_string;
+        private String name, id_num, level, category, department, gender, position, email, phone, fp_string;
         private byte[] img_arr;
         public DPFP.Capture.Capture Capturer;
 
@@ -116,7 +116,33 @@ namespace Fingerprint_attendance_mgt
                 phone = value;
             }
         }
-#endregion member variables
+
+        public string Level
+        {
+            get
+            {
+                return level;
+            }
+
+            set
+            {
+                level = value;
+            }
+        }
+
+        public string Category
+        {
+            get
+            {
+                return category;
+            }
+
+            set
+            {
+                category = value;
+            }
+        }
+        #endregion member variables
         public Enroll()
         {
             InitializeComponent();
@@ -342,6 +368,9 @@ namespace Fingerprint_attendance_mgt
             }
 
         }
+
+       
+
         private void update_button_Click(object sender, EventArgs e)
         {
             if(Name_text.Text == string.Empty)
@@ -352,6 +381,7 @@ namespace Fingerprint_attendance_mgt
             {
                 MessageBox.Show("Enter ID");
             }
+            
             else if (Dept_text.Text == string.Empty)
             {
                 MessageBox.Show("Enter Department");
@@ -380,6 +410,8 @@ namespace Fingerprint_attendance_mgt
             Position = Position_comboBox.Text;
             Phone = Phone_text.Text;
             Email = Email_text.Text;
+            Level = comboBox_level.Text;
+            Category = comboBox_category.Text;
 
             byte[] bytes = new byte[1632];
             try
@@ -401,7 +433,7 @@ namespace Fingerprint_attendance_mgt
         private void dbUpdate()
         {
             Database db = new Database();
-            db.dbEnroll(Id_num, Name1, Department, Gender, Position, Phone, Email, img_arr, fp_string);
+            db.dbEnroll(Id_num, Name1, Department, Gender, Position, Phone, Email, img_arr, fp_string, Level, Category);
             MessageBox.Show("User Enrolled");
         }
 

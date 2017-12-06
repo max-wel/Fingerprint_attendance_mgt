@@ -61,6 +61,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox_category = new System.Windows.Forms.TextBox();
+            this.textBox_level = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -76,7 +80,7 @@
             this.logToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1145, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1155, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -102,6 +106,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox_level);
+            this.groupBox1.Controls.Add(this.textBox_category);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.textBox_timeOut);
             this.groupBox1.Controls.Add(this.textBox_timeIn);
             this.groupBox1.Controls.Add(this.label7);
@@ -117,23 +125,23 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(204, 77);
+            this.groupBox1.Location = new System.Drawing.Point(200, 77);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(349, 276);
+            this.groupBox1.Size = new System.Drawing.Size(353, 371);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Staff Details";
             // 
             // textBox_timeOut
             // 
-            this.textBox_timeOut.Location = new System.Drawing.Point(210, 240);
+            this.textBox_timeOut.Location = new System.Drawing.Point(207, 321);
             this.textBox_timeOut.Name = "textBox_timeOut";
             this.textBox_timeOut.Size = new System.Drawing.Size(105, 22);
             this.textBox_timeOut.TabIndex = 13;
             // 
             // textBox_timeIn
             // 
-            this.textBox_timeIn.Location = new System.Drawing.Point(30, 240);
+            this.textBox_timeIn.Location = new System.Drawing.Point(22, 321);
             this.textBox_timeIn.Name = "textBox_timeIn";
             this.textBox_timeIn.Size = new System.Drawing.Size(105, 22);
             this.textBox_timeIn.TabIndex = 12;
@@ -141,7 +149,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(231, 212);
+            this.label7.Location = new System.Drawing.Point(228, 293);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 16);
             this.label7.TabIndex = 11;
@@ -150,7 +158,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(45, 212);
+            this.label6.Location = new System.Drawing.Point(45, 293);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 16);
             this.label6.TabIndex = 10;
@@ -158,7 +166,7 @@
             // 
             // textBox_gender
             // 
-            this.textBox_gender.Location = new System.Drawing.Point(116, 164);
+            this.textBox_gender.Location = new System.Drawing.Point(116, 241);
             this.textBox_gender.Name = "textBox_gender";
             this.textBox_gender.Size = new System.Drawing.Size(208, 22);
             this.textBox_gender.TabIndex = 9;
@@ -166,7 +174,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 170);
+            this.label5.Location = new System.Drawing.Point(16, 247);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 16);
             this.label5.TabIndex = 8;
@@ -174,7 +182,7 @@
             // 
             // textBox_pos
             // 
-            this.textBox_pos.Location = new System.Drawing.Point(116, 127);
+            this.textBox_pos.Location = new System.Drawing.Point(116, 203);
             this.textBox_pos.Name = "textBox_pos";
             this.textBox_pos.Size = new System.Drawing.Size(208, 22);
             this.textBox_pos.TabIndex = 7;
@@ -203,7 +211,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 133);
+            this.label4.Location = new System.Drawing.Point(16, 209);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 16);
             this.label4.TabIndex = 3;
@@ -212,7 +220,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 100);
+            this.label3.Location = new System.Drawing.Point(16, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 16);
             this.label3.TabIndex = 2;
@@ -221,7 +229,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 65);
+            this.label2.Location = new System.Drawing.Point(16, 66);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 16);
             this.label2.TabIndex = 1;
@@ -230,7 +238,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 30);
+            this.label1.Location = new System.Drawing.Point(16, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 16);
             this.label1.TabIndex = 0;
@@ -243,9 +251,9 @@
             this.date,
             this.toolStripStatusLabel3,
             this.time});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 469);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 523);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1145, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1155, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -335,11 +343,43 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 136);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(69, 16);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "Category :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 172);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(76, 16);
+            this.label11.TabIndex = 15;
+            this.label11.Text = "Staff Level :";
+            // 
+            // textBox_category
+            // 
+            this.textBox_category.Location = new System.Drawing.Point(116, 130);
+            this.textBox_category.Name = "textBox_category";
+            this.textBox_category.Size = new System.Drawing.Size(208, 22);
+            this.textBox_category.TabIndex = 16;
+            // 
+            // textBox_level
+            // 
+            this.textBox_level.Location = new System.Drawing.Point(116, 166);
+            this.textBox_level.Name = "textBox_level";
+            this.textBox_level.Size = new System.Drawing.Size(208, 22);
+            this.textBox_level.TabIndex = 17;
+            // 
             // attendance_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1145, 491);
+            this.ClientSize = new System.Drawing.Size(1155, 545);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.Picture);
@@ -402,6 +442,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox textBox_level;
+        private System.Windows.Forms.TextBox textBox_category;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
 

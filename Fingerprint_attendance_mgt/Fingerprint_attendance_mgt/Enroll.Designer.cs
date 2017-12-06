@@ -34,20 +34,24 @@
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox_level = new System.Windows.Forms.ComboBox();
+            this.comboBox_category = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.Gender_comboBox = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.Dept_text = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.clear_button = new System.Windows.Forms.Button();
             this.update_button = new System.Windows.Forms.Button();
             this.Position_comboBox = new System.Windows.Forms.ComboBox();
-            this.Gender_comboBox = new System.Windows.Forms.ComboBox();
             this.Email_text = new System.Windows.Forms.TextBox();
             this.Phone_text = new System.Windows.Forms.TextBox();
-            this.Dept_text = new System.Windows.Forms.TextBox();
             this.Id_text = new System.Windows.Forms.TextBox();
             this.Name_text = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -109,33 +113,123 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox_level);
+            this.groupBox1.Controls.Add(this.comboBox_category);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.Gender_comboBox);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.Dept_text);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.clear_button);
             this.groupBox1.Controls.Add(this.update_button);
             this.groupBox1.Controls.Add(this.Position_comboBox);
-            this.groupBox1.Controls.Add(this.Gender_comboBox);
             this.groupBox1.Controls.Add(this.Email_text);
             this.groupBox1.Controls.Add(this.Phone_text);
-            this.groupBox1.Controls.Add(this.Dept_text);
             this.groupBox1.Controls.Add(this.Id_text);
             this.groupBox1.Controls.Add(this.Name_text);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(22, 26);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(402, 437);
+            this.groupBox1.Size = new System.Drawing.Size(401, 480);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "STAFF DETAILS";
             // 
+            // comboBox_level
+            // 
+            this.comboBox_level.DisplayMember = "SP";
+            this.comboBox_level.FormattingEnabled = true;
+            this.comboBox_level.Items.AddRange(new object[] {
+            "SP",
+            "JP"});
+            this.comboBox_level.Location = new System.Drawing.Point(124, 103);
+            this.comboBox_level.Name = "comboBox_level";
+            this.comboBox_level.Size = new System.Drawing.Size(219, 21);
+            this.comboBox_level.TabIndex = 22;
+            this.comboBox_level.Text = "SP";
+            // 
+            // comboBox_category
+            // 
+            this.comboBox_category.DisplayMember = "Male";
+            this.comboBox_category.FormattingEnabled = true;
+            this.comboBox_category.Items.AddRange(new object[] {
+            "Academic Staff",
+            "Non-Academic Staff"});
+            this.comboBox_category.Location = new System.Drawing.Point(124, 140);
+            this.comboBox_category.Name = "comboBox_category";
+            this.comboBox_category.Size = new System.Drawing.Size(219, 21);
+            this.comboBox_category.TabIndex = 21;
+            this.comboBox_category.Text = "Academic Staff";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(6, 141);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(61, 15);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "Category :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(6, 104);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(69, 15);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Staff Level :";
+            // 
+            // Gender_comboBox
+            // 
+            this.Gender_comboBox.DisplayMember = "Male";
+            this.Gender_comboBox.FormattingEnabled = true;
+            this.Gender_comboBox.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.Gender_comboBox.Location = new System.Drawing.Point(124, 217);
+            this.Gender_comboBox.Name = "Gender_comboBox";
+            this.Gender_comboBox.Size = new System.Drawing.Size(219, 21);
+            this.Gender_comboBox.TabIndex = 14;
+            this.Gender_comboBox.Text = "Male";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 218);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 15);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Gender :";
+            // 
+            // Dept_text
+            // 
+            this.Dept_text.Location = new System.Drawing.Point(124, 180);
+            this.Dept_text.Name = "Dept_text";
+            this.Dept_text.Size = new System.Drawing.Size(219, 20);
+            this.Dept_text.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 181);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 15);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Department :";
+            // 
             // clear_button
             // 
-            this.clear_button.Location = new System.Drawing.Point(234, 369);
+            this.clear_button.Location = new System.Drawing.Point(234, 400);
             this.clear_button.Name = "clear_button";
             this.clear_button.Size = new System.Drawing.Size(109, 27);
             this.clear_button.TabIndex = 18;
@@ -145,7 +239,7 @@
             // 
             // update_button
             // 
-            this.update_button.Location = new System.Drawing.Point(47, 369);
+            this.update_button.Location = new System.Drawing.Point(46, 400);
             this.update_button.Name = "update_button";
             this.update_button.Size = new System.Drawing.Size(109, 27);
             this.update_button.TabIndex = 17;
@@ -175,45 +269,25 @@
             "Clerical Officer",
             "Caretaker",
             "None"});
-            this.Position_comboBox.Location = new System.Drawing.Point(124, 175);
+            this.Position_comboBox.Location = new System.Drawing.Point(124, 259);
             this.Position_comboBox.Name = "Position_comboBox";
             this.Position_comboBox.Size = new System.Drawing.Size(219, 21);
             this.Position_comboBox.TabIndex = 15;
             this.Position_comboBox.Text = "Professor";
             // 
-            // Gender_comboBox
-            // 
-            this.Gender_comboBox.DisplayMember = "Male";
-            this.Gender_comboBox.FormattingEnabled = true;
-            this.Gender_comboBox.Items.AddRange(new object[] {
-            "Male",
-            "Female"});
-            this.Gender_comboBox.Location = new System.Drawing.Point(124, 136);
-            this.Gender_comboBox.Name = "Gender_comboBox";
-            this.Gender_comboBox.Size = new System.Drawing.Size(219, 21);
-            this.Gender_comboBox.TabIndex = 14;
-            this.Gender_comboBox.Text = "Male";
-            // 
             // Email_text
             // 
-            this.Email_text.Location = new System.Drawing.Point(124, 249);
+            this.Email_text.Location = new System.Drawing.Point(124, 337);
             this.Email_text.Name = "Email_text";
             this.Email_text.Size = new System.Drawing.Size(219, 20);
             this.Email_text.TabIndex = 13;
             // 
             // Phone_text
             // 
-            this.Phone_text.Location = new System.Drawing.Point(124, 213);
+            this.Phone_text.Location = new System.Drawing.Point(124, 300);
             this.Phone_text.Name = "Phone_text";
             this.Phone_text.Size = new System.Drawing.Size(219, 20);
             this.Phone_text.TabIndex = 12;
-            // 
-            // Dept_text
-            // 
-            this.Dept_text.Location = new System.Drawing.Point(124, 100);
-            this.Dept_text.Name = "Dept_text";
-            this.Dept_text.Size = new System.Drawing.Size(219, 20);
-            this.Dept_text.TabIndex = 9;
             // 
             // Id_text
             // 
@@ -233,7 +307,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 249);
+            this.label7.Location = new System.Drawing.Point(6, 337);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 15);
             this.label7.TabIndex = 6;
@@ -243,7 +317,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 213);
+            this.label6.Location = new System.Drawing.Point(6, 300);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 15);
             this.label6.TabIndex = 5;
@@ -253,31 +327,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 175);
+            this.label5.Location = new System.Drawing.Point(6, 259);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 15);
             this.label5.TabIndex = 4;
             this.label5.Text = "Position :";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 136);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 15);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Gender :";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 100);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Department :";
             // 
             // label2
             // 
@@ -387,7 +441,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox Email_text;
         private System.Windows.Forms.ComboBox Gender_comboBox;
@@ -403,5 +456,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label StatusLine;
         private System.Windows.Forms.Button clear_button;
+        private System.Windows.Forms.ComboBox comboBox_category;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox_level;
     }
 }

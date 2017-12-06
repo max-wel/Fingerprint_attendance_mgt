@@ -19,7 +19,7 @@ namespace Fingerprint_attendance_mgt
     public partial class attendance_form : Form, DPFP.Capture.EventHandler
     {
         private string staff_finger; //variable to hold staff fingerprint from list for identification
-        private string id,staff_Date, timeIn, timeOut, name;  //variables for storing staff date, timein and timeout
+        private string id,staff_Date, timeIn, timeOut, name, level, category;  //variables for storing staff date, timein and timeout
         private string path = Path.GetFullPath(Environment.CurrentDirectory);
         private string dbName = "Attendance_mgt.mdf";
         //SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + ";Integrated Security=True;Connect Timeout=30");
@@ -106,6 +106,32 @@ namespace Fingerprint_attendance_mgt
             set
             {
                 name = value;
+            }
+        }
+
+        public string Level
+        {
+            get
+            {
+                return level;
+            }
+
+            set
+            {
+                level = value;
+            }
+        }
+
+        public string Category
+        {
+            get
+            {
+                return category;
+            }
+
+            set
+            {
+                category = value;
             }
         }
 
@@ -303,6 +329,25 @@ namespace Fingerprint_attendance_mgt
             }
             textBox_timeOut.Text = text;
         }
+        public void setTextCategory(string text)
+        {
+            if (textBox_category.InvokeRequired)
+            {
+                setText d = new setText(setTextCategory);
+                this.Invoke(d, new object[] { text });
+            }
+            textBox_category.Text = text;
+        }
+        public void setTextLevel(string text)
+        {
+            if (textBox_level.InvokeRequired)
+            {
+                setText d = new setText(setTextLevel);
+                this.Invoke(d, new object[] { text });
+            }
+            textBox_level.Text = text;
+        }
+
 
         public void setPhoto(byte[] photo)
         {
@@ -330,6 +375,8 @@ namespace Fingerprint_attendance_mgt
                     setTextPos(reader["Position"].ToString());
                     setTextGender(reader["Gender"].ToString());
                     setPhoto((byte[])reader["Photo"]);
+                    setTextCategory(reader["Category"].ToString());
+                    setTextLevel(reader["Level"].ToString());
 
                     TimeIn = DateTime.Now.ToString("hh:mm tt");
                     setTextTimeIn(TimeIn);
@@ -337,14 +384,18 @@ namespace Fingerprint_attendance_mgt
 
                     Id = reader["Id"].ToString();
                     Name1 = reader["Full Name"].ToString();
+                    Level = reader["Level"].ToString();
+                    Category = reader["Category"].ToString();
                     Staff_Date = DateTime.Now.ToString("dd-MMM-yyyy");
+
+                    setTextTimeOut(""); // to clear the time-out field
 
                 }
                
 
             }
             Database db = new Database();
-            db.updateStaff_Attendance(Id, Staff_Date, TimeIn, Name1);
+            db.updateStaff_Attendance(Id, Staff_Date, TimeIn, Name1, Level, Category);
 
         }
 
@@ -367,6 +418,8 @@ namespace Fingerprint_attendance_mgt
                     setTextPos(reader["Position"].ToString());
                     setTextGender(reader["Gender"].ToString());
                     setPhoto((byte[])reader["Photo"]);
+                    setTextCategory(reader["Category"].ToString());
+                    setTextLevel(reader["Level"].ToString());
                 }
             }
 
