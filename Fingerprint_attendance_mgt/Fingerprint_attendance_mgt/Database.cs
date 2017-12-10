@@ -16,7 +16,7 @@ namespace Fingerprint_attendance_mgt
         private byte[] photo;
         private string path, dbName;
         private SqlConnection conn;
-        string time_, date_;
+        string timeIn_, timeOut_, date_;
 
         #region member variables
         public string Id
@@ -224,23 +224,25 @@ namespace Fingerprint_attendance_mgt
             }
         }
 
-        public void timeIn_retrieve(string id, string date, out string time, out string out_date)
+        public void timeIn_retrieve(string id, string date, out string timeIn, out string timeOut, out string out_date)
         {
             //string time;
             using (conn)
             {
-                var cmd = new SqlCommand("SELECT TimeIn, Date FROM [Staff_Attendance] WHERE Id = @id",conn);
+                var cmd = new SqlCommand("SELECT TimeIn, Date, TimeOut FROM [Staff_Attendance] WHERE Id = @id",conn);
                 cmd.Parameters.AddWithValue("id", Int32.Parse(id));
                 //cmd.Parameters.AddWithValue("date", date);
                 conn.Open();
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    time_ = reader["TimeIn"].ToString();
+                    timeIn_ = reader["TimeIn"].ToString();
+                    timeOut_ = reader["TimeOut"].ToString();
                     date_ = reader["Date"].ToString();
                 }
             }
-            time = time_;
+            timeIn = timeIn_;
+            timeOut = timeOut_;
             out_date = date_;
             //return time;
             //return date;

@@ -213,8 +213,12 @@ namespace Fingerprint_attendance_mgt
             }));
         }
 
-        protected  void Process(DPFP.Sample Sample)
+        protected void Process(DPFP.Sample Sample)
         {
+            TimeSpan begin = TimeSpan.Parse("07:00");
+            TimeSpan stop = TimeSpan.Parse("19:00");
+            TimeSpan now = DateTime.Now.TimeOfDay;
+
             bool verified = false;
             // Draw fingerprint sample image.
             DrawPicture(ConvertSampleToBitmap(Sample));
@@ -228,32 +232,39 @@ namespace Fingerprint_attendance_mgt
             {
                 foreach (var val in list)
                 {
-                    
+
                     Staff_finger = val;
                     f_print = Convert.FromBase64String(val);
                     DPFP.Template temp = new DPFP.Template();
                     temp.DeSerialize(f_print);
                     Template = temp;
 
-                    DPFP.Verification.Verification.Result result = new DPFP.Verification.Verification.Result();
-                    Verificator.Verify(features, Template, ref result);
-                    //UpdateStatus(result.FARAchieved);
-                    if (result.Verified)
+                    if (now >= begin && now <= stop)
                     {
-                        verified = true;
-                        MakeReport("The fingerprint was VERIFIED.");
-                        checktimeOut();
-                        //dbAccess();
+
+                        DPFP.Verification.Verification.Result result = new DPFP.Verification.Verification.Result();
+                        Verificator.Verify(features, Template, ref result);
+                        //UpdateStatus(result.FARAchieved);
+                        if (result.Verified)
+                        {
+                            verified = true;
+                            MakeReport("The fingerprint was VERIFIED.");
+                            checktimeOut();
+                            //dbAccess();
+                        }
+
+                        if (!verified)
+                        {
+                            MessageBox.Show("Invalid staff");
+                        }
                     }
-                        
-                    
+                    // Compare the feature set with our template
+                   else
+                    {
+                        MessageBox.Show("Theojioaoj");
+                    }
+
                 }
-                // Compare the feature set with our template
-                if (!verified)
-                {
-                    MessageBox.Show("Invalid staff");
-                }
-                
             }
         }
 
@@ -426,24 +437,30 @@ namespace Fingerprint_attendance_mgt
             Database db = new Database();
             var date = DateTime.Now.ToString("dd-MMM-yyyy");
             //var timeIn = db.timeIn_retrieve(Id, date);
-            string timeIn;
-            string out_date;
-            db.timeIn_retrieve(Id, date, out timeIn, out out_date);
+            string timeIn, timeOut, out_date;
+            
+            db.timeIn_retrieve(Id, date, out timeIn, out timeOut, out out_date);
             //MessageBox.Show(timeIn);
             if (!string.IsNullOrEmpty(timeIn) && string.Equals(out_date, date))
             {
-                TimeOut = DateTime.Now.ToString("hh:mm tt");
-                setTextTimeOut(TimeOut);
-                setTextTimeIn(timeIn);
-                Database db_ = new Database();
-                db_.updatetimeOut(Id, date, TimeOut);
+                MessageBox.Show("Already Signed Out");
+                return;
             }
-            else
-            {
-                dbAccess();
-            }
+            //if (!string.IsNullOrEmpty(timeIn) && string.Equals(out_date, date))
+            //{
+            //    TimeOut = DateTime.Now.ToString("hh:mm tt");
+            //    setTextTimeOut(TimeOut);
+            //    setTextTimeIn(timeIn);
+            //    Database db_ = new Database();
+            //    db_.updatetimeOut(Id, date, TimeOut);
+            //}
+            //else
+            //{
+            //    dbAccess();
+            //}
         }
 
+        
 
 
 
