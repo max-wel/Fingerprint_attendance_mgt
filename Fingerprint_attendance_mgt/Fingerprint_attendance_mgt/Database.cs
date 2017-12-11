@@ -229,9 +229,9 @@ namespace Fingerprint_attendance_mgt
             //string time;
             using (conn)
             {
-                var cmd = new SqlCommand("SELECT TimeIn, Date, TimeOut FROM [Staff_Attendance] WHERE Id = @id",conn);
+                var cmd = new SqlCommand("SELECT TimeIn, Date, TimeOut FROM [Staff_Attendance] WHERE Id = @id AND Date = @date",conn);
                 cmd.Parameters.AddWithValue("id", Int32.Parse(id));
-                //cmd.Parameters.AddWithValue("date", date);
+                cmd.Parameters.AddWithValue("date", date);
                 conn.Open();
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())

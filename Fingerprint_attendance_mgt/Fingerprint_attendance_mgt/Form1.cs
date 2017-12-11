@@ -218,29 +218,28 @@ namespace Fingerprint_attendance_mgt
             TimeSpan begin = TimeSpan.Parse("07:00");
             TimeSpan stop = TimeSpan.Parse("19:00");
             TimeSpan now = DateTime.Now.TimeOfDay;
-
-            bool verified = false;
-            // Draw fingerprint sample image.
-            DrawPicture(ConvertSampleToBitmap(Sample));
-
-            // Process the sample and create a feature set for the enrollment purpose.
-            DPFP.FeatureSet features = ExtractFeatures(Sample, DPFP.Processing.DataPurpose.Verification);
-
-            // Check quality of the sample and start verification if it's good
-            // TODO: move to a separate task
-            if (features != null)
+            if (now >= begin && now <= stop)
             {
-                foreach (var val in list)
+                bool verified = false;
+                // Draw fingerprint sample image.
+                DrawPicture(ConvertSampleToBitmap(Sample));
+
+                // Process the sample and create a feature set for the enrollment purpose.
+                DPFP.FeatureSet features = ExtractFeatures(Sample, DPFP.Processing.DataPurpose.Verification);
+
+                // Check quality of the sample and start verification if it's good
+                // TODO: move to a separate task
+                if (features != null)
                 {
-
-                    Staff_finger = val;
-                    f_print = Convert.FromBase64String(val);
-                    DPFP.Template temp = new DPFP.Template();
-                    temp.DeSerialize(f_print);
-                    Template = temp;
-
-                    if (now >= begin && now <= stop)
+                    foreach (var val in list)
                     {
+
+                        Staff_finger = val;
+                        f_print = Convert.FromBase64String(val);
+                        DPFP.Template temp = new DPFP.Template();
+                        temp.DeSerialize(f_print);
+                        Template = temp;
+
 
                         DPFP.Verification.Verification.Result result = new DPFP.Verification.Verification.Result();
                         Verificator.Verify(features, Template, ref result);
@@ -259,14 +258,17 @@ namespace Fingerprint_attendance_mgt
                         }
                     }
                     // Compare the feature set with our template
-                   else
-                    {
-                        MessageBox.Show("Theojioaoj");
-                    }
+
 
                 }
             }
+            else
+            {
+                MessageBox.Show("jklajkdl");
+            }
         }
+        
+        
 
         public void get_fprint()
         {
@@ -362,7 +364,7 @@ namespace Fingerprint_attendance_mgt
 
         public void setPhoto(byte[] photo)
         {
-            
+
             Bitmap image = new Bitmap(new MemoryStream(photo));
             pictureBox1.Image = image;
         }
@@ -402,7 +404,7 @@ namespace Fingerprint_attendance_mgt
                     setTextTimeOut(""); // to clear the time-out field
 
                 }
-               
+
 
             }
             Database db = new Database();
@@ -412,7 +414,7 @@ namespace Fingerprint_attendance_mgt
 
         public void checktimeOut()
         {
-            using(var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + ";Integrated Security=True;Connect Timeout=30"))
+            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + ";Integrated Security=True;Connect Timeout=30"))
             {
                 conn.Open();
                 var cmd = new SqlCommand("SELECT * FROM [Staff_Enroll] WHERE Fingerprint = @fingerprint ", conn);
@@ -438,29 +440,31 @@ namespace Fingerprint_attendance_mgt
             var date = DateTime.Now.ToString("dd-MMM-yyyy");
             //var timeIn = db.timeIn_retrieve(Id, date);
             string timeIn, timeOut, out_date;
-            
+
             db.timeIn_retrieve(Id, date, out timeIn, out timeOut, out out_date);
             //MessageBox.Show(timeIn);
-            if (!string.IsNullOrEmpty(timeIn) && string.Equals(out_date, date))
+            if (!string.IsNullOrEmpty(timeOut))
             {
+                setTextTimeOut(timeOut);
+                setTextTimeIn(timeIn);
                 MessageBox.Show("Already Signed Out");
                 return;
             }
-            //if (!string.IsNullOrEmpty(timeIn) && string.Equals(out_date, date))
-            //{
-            //    TimeOut = DateTime.Now.ToString("hh:mm tt");
-            //    setTextTimeOut(TimeOut);
-            //    setTextTimeIn(timeIn);
-            //    Database db_ = new Database();
-            //    db_.updatetimeOut(Id, date, TimeOut);
-            //}
-            //else
-            //{
-            //    dbAccess();
-            //}
+            if (!string.IsNullOrEmpty(timeIn))
+            {
+                TimeOut = DateTime.Now.ToString("hh:mm tt");
+                setTextTimeOut(TimeOut);
+                setTextTimeIn(timeIn);
+                Database db_ = new Database();
+                db_.updatetimeOut(Id, date, TimeOut);
+            }
+            else
+            {
+                dbAccess();
+            }
         }
 
-        
+
 
 
 
