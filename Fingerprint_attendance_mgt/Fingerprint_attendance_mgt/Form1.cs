@@ -264,7 +264,7 @@ namespace Fingerprint_attendance_mgt
             }
             else
             {
-                MessageBox.Show("jklajkdl");
+                MessageBox.Show("System Inactive");
             }
         }
         
