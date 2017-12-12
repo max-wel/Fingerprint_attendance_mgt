@@ -41,66 +41,73 @@ namespace Fingerprint_attendance_mgt
 
         public void pdf_gen(DataTable dt)
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.ShowDialog();
-            using(FileStream stream = new FileStream(save.FileName + ".pdf", FileMode.Create))
+            if (dt == null)
             {
-                Document doc = new Document();
-                PdfWriter writer = PdfWriter.GetInstance(doc, stream);
-
-                writer.PageEvent = new headerEvent() ;
-
-                doc.AddHeader("record", "Records");
-                doc.Open();
-                iTextSharp.text.Font font5 = iTextSharp.text.FontFactory.GetFont(FontFactory.HELVETICA, 10);
-                // Header header = new Header("Records", "Records");
-              
-                Paragraph p = new Paragraph("ATTENDANCE REPORT FOR "+ textBox_from.Text.ToUpper() + " TO " + textBox_to.Text.ToUpper());
-                p.Alignment = Element.ALIGN_CENTER; 
-                
-                p.SetLeading(30, 0);
-                p.Font = FontFactory.GetFont("HELVETICA", 30, BaseColor.RED);
-                Paragraph p1 = new Paragraph(" ");
-                doc.Add(p);
-                doc.Add(p1);
-
-                PdfPTable table = new PdfPTable(dt.Columns.Count);
-                PdfPRow row = null;
-                float[] widths = new float[] { 4f, 4f, 4f, 4f, 4f };
-
-                table.SetWidths(widths);
-
-                table.WidthPercentage = 100;
-                //int iCol = 0;
-                //string colname = "";
-                PdfPCell cell = new PdfPCell(new Phrase("Products"));
-
-                cell.Colspan = dt.Columns.Count;
-
-
-
-                foreach (DataColumn c in dt.Columns)
-                {
-
-                    table.AddCell(new Phrase(c.ColumnName, font5));
-                }
-
-                foreach (DataRow r in dt.Rows)
-                {
-                    if (dt.Rows.Count > 0)
-                    {
-                        table.AddCell(new Phrase(r[0].ToString(), font5));
-                        table.AddCell(new Phrase(r[1].ToString(), font5));
-                        table.AddCell(new Phrase(r[2].ToString(), font5));
-                        table.AddCell(new Phrase(r[3].ToString(), font5));
-                        table.AddCell(new Phrase(r[4].ToString(), font5));
-                    }
-                }
-                doc.Add(table);
-                doc.Close();
+                MessageBox.Show("Click Generate Button");
             }
-            
+            else
+            {
+                SaveFileDialog save = new SaveFileDialog();
+                save.ShowDialog();
+                using (FileStream stream = new FileStream(save.FileName + ".pdf", FileMode.Create))
+                {
+                    Document doc = new Document();
+                    PdfWriter writer = PdfWriter.GetInstance(doc, stream);
 
+                    writer.PageEvent = new headerEvent();
+
+                    doc.AddHeader("record", "Records");
+                    doc.Open();
+                    iTextSharp.text.Font font5 = iTextSharp.text.FontFactory.GetFont(FontFactory.HELVETICA, 10);
+                    // Header header = new Header("Records", "Records");
+
+                    Paragraph p = new Paragraph("ATTENDANCE REPORT FOR " + textBox_from.Text.ToUpper() + " TO " + textBox_to.Text.ToUpper());
+                    p.Alignment = Element.ALIGN_CENTER;
+
+                    p.SetLeading(30, 0);
+                    p.Font = FontFactory.GetFont("HELVETICA", 30, BaseColor.RED);
+                    Paragraph p1 = new Paragraph(" ");
+                    doc.Add(p);
+                    doc.Add(p1);
+
+                    PdfPTable table = new PdfPTable(dt.Columns.Count);
+                    PdfPRow row = null;
+                    float[] widths = new float[] { 4f, 4f, 4f, 4f, 4f };
+
+                    table.SetWidths(widths);
+
+                    table.WidthPercentage = 100;
+                    //int iCol = 0;
+                    //string colname = "";
+                    PdfPCell cell = new PdfPCell(new Phrase("Products"));
+
+                    cell.Colspan = dt.Columns.Count;
+
+
+
+                    foreach (DataColumn c in dt.Columns)
+                    {
+
+                        table.AddCell(new Phrase(c.ColumnName, font5));
+                    }
+
+                    foreach (DataRow r in dt.Rows)
+                    {
+                        if (dt.Rows.Count > 0)
+                        {
+                            table.AddCell(new Phrase(r[0].ToString(), font5));
+                            table.AddCell(new Phrase(r[1].ToString(), font5));
+                            table.AddCell(new Phrase(r[2].ToString(), font5));
+                            table.AddCell(new Phrase(r[3].ToString(), font5));
+                            table.AddCell(new Phrase(r[4].ToString(), font5));
+                        }
+                    }
+                    doc.Add(table);
+                    doc.Close();
+                }
+
+
+            }
         }
 
         public class headerEvent: PdfPageEventHelper
