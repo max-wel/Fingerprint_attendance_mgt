@@ -252,13 +252,13 @@ namespace Fingerprint_attendance_mgt
                             //dbAccess();
                         }
 
-                        if (!verified)
-                        {
-                            MessageBox.Show("Invalid staff");
-                        }
+                       
                     }
                     // Compare the feature set with our template
-
+                    if (!verified)
+                    {
+                        MessageBox.Show("Invalid staff");
+                    }
 
                 }
             }
