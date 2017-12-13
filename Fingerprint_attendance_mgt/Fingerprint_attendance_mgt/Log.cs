@@ -72,7 +72,7 @@ namespace Fingerprint_attendance_mgt
 
                     PdfPTable table = new PdfPTable(dt.Columns.Count);
                     PdfPRow row = null;
-                    float[] widths = new float[] { 4f, 4f, 4f, 4f, 4f };
+                    float[] widths = new float[] { 4f, 4f, 4f, 4f, 4f,4f,4f };
 
                     table.SetWidths(widths);
 
@@ -100,6 +100,8 @@ namespace Fingerprint_attendance_mgt
                             table.AddCell(new Phrase(r[2].ToString(), font5));
                             table.AddCell(new Phrase(r[3].ToString(), font5));
                             table.AddCell(new Phrase(r[4].ToString(), font5));
+                            table.AddCell(new Phrase(r[5].ToString(), font5));
+                            table.AddCell(new Phrase(r[6].ToString(), font5));
                         }
                     }
                     doc.Add(table);
